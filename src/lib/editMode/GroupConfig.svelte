@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {debounce} from "radash";
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
@@ -14,6 +15,16 @@
 		data = null;
 		data = await db.groups.where("id").equals(groupId).first();
 	}
+
+	$: {
+		data = data;
+		updateData();
+	}
+
+	const updateData = debounce({delay: 500}, () => {
+		console.log("Update DB")
+		db.groups.update(id, data);
+	});
 
 	async function removeGroup() {
 		db.groups.delete(id);
@@ -58,7 +69,7 @@
 
 <ConfigForm {data}>
 	<ConfigSection>
-		<ConfigInput label="Titel" on:input={updateTitle} value={data.title} />
+		<ConfigInput bind:value={data.title} label="Titel" />
 	</ConfigSection>
 	<ConfigSection>
 		<ConfigButton icon="add" on:click={addSound}>Add new sound</ConfigButton>

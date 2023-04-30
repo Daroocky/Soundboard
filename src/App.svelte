@@ -1,9 +1,11 @@
 <script lang="ts">
-	import AudioButton from "./lib/AudioButton.svelte";
 	import AppConfig from "./lib/editMode/AppConfig.svelte";
 	import AudioConfig from "./lib/editMode/AudioConfig.svelte";
 	import GroupConfig from "./lib/editMode/GroupConfig.svelte";
+	import GroupEdit from "./lib/editMode/GroupEdit.svelte";
+	import SoundEdit from "./lib/editMode/SoundEdit.svelte";
 	import Group from "./lib/Group.svelte";
+	import Sound from "./lib/Sound.svelte";
 	import {editMode, editObject, state} from "./stores";
 
 	const editConfigs = {
@@ -35,22 +37,28 @@
 		<button on:click={toggleEdit}>{$editMode ? "Edit Mode" : "Live Mode"}</button>
 
 		{#if $state}
+
+
 			{#each $state as group (group.id)}
-				<Group
+				<svelte:component this={$editMode ? GroupEdit : Group}
 				 id={group.id}
 				 title={group.title}
-				 single={group.single}
 				>
 					{#each group.sounds as sound (sound.id)}
-						<AudioButton
+						<svelte:component this={$editMode ? SoundEdit : Sound}
 						 id={sound.id}
-						 name={sound.title}
-						 src={sound.file.blob}
+						 title={sound.title}
+						 color={sound.color}
+						 blob={sound.file.blob}
+						 solo={sound.solo}
 						 loop={sound.loop}
+						 pausable={sound.pausable}
 						/>
 					{/each}
-				</Group>
+				</svelte:component>
 			{/each}
+
+
 		{/if}
 
 
@@ -87,6 +95,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
+    gap: 1rem;
   }
 
   aside {
