@@ -11,7 +11,15 @@
 
 	let open = false;
 	let currentOption: Option;
-	$: currentOption = options.find(option => option.value == value);
+	let currentFocus;
+	$: {
+		currentOption = options.find(option => option.value == value);
+
+		if (!currentOption) {
+			value = options[0].value;
+			currentOption = options.find(option => option.value == value);
+		}
+	}
 
 
 	function selectOption(option: Option) {
@@ -20,9 +28,85 @@
 		dispatch("input", option)
 	}
 
+	enum Actions {
+		Open,
+		Close,
+		Next,
+		Previous,
+		SelectOption
+	}
+
+	function getKeyboardAction(key: string) {
+		if (key == "Tab") {
+			return Actions.Close
+		}
+
+		if (open) {
+			if (key === "Escape") {
+				return Actions.Close;
+			}
+
+			if (key === "ArrowDown") {
+				return Actions.Next
+			}
+
+			if (key === "ArrowUp") {
+				return Actions.Previous
+			}
+
+			if (key === "Enter" || key === " ") {
+				return Actions.SelectOption;
+			}
+
+			return null;
+		}
+
+		if (key === "Enter" || key === " ") {
+			return Actions.Open;
+		}
+
+		return null;
+	}
+
+	function handleKeyboard(event) {
+		const action = getKeyboardAction(event.key);
+
+		if (action != Actions.Close) {
+			event.preventDefault();
+		}
+
+		if (action == Actions.Open) {
+			open = true;
+			currentFocus = options.findIndex(option => value == option.value);
+		}
+
+		if (action == Actions.Next) {
+			currentFocus++;
+
+			if (currentFocus >= options.length) {
+				currentFocus = 0;
+			}
+		}
+
+		if (action == Actions.Previous) {
+			currentFocus--;
+
+			if (currentFocus < 0) {
+				currentFocus = options.length - 1;
+			}
+		}
+
+		if (action == Actions.Close) {
+			open = false;
+		}
+
+		if (action == Actions.SelectOption) {
+			selectOption(options[currentFocus]);
+		}
+	}
 </script>
 
-<div class="dropdown" on:click_outside={() => open = false} use:clickOutside>
+<div class="dropdown" on:click_outside={() => open = false} on:keydown={handleKeyboard} use:clickOutside>
 	<label on:click|preventDefault={() => open = !open}>
 		<span class="label">{label}</span>
 
@@ -42,9 +126,10 @@
 		<i class="fa fa-chevron-down"></i>
 	</button>
 	<ul class="options" class:open role="listbox">
-		{#each options as option (option.value)}
+		{#each options as option, i (option.value)}
 			<li
 			 class="option"
+			 class:selected={i === currentFocus}
 			 role="option"
 			 aria-selected={value == option.value}
 			 on:click={() => selectOption(option)}>
@@ -80,7 +165,7 @@
 		width: 100%;
 		padding: 0.5rem;
 		cursor: pointer;
-		color: white;
+		color: var(--color-gray-100);
 		border: 2px solid var(--color-gray-500);
 		border-radius: 5px;
 		background: var(--color-gray-500);
@@ -116,7 +201,7 @@
 		transition: all 250ms ease-in-out;
 		pointer-events: none;
 		opacity: 0;
-		color: white;
+		color: var(--color-gray-100);
 		border: 2px solid var(--color-gray-500);
 		border-radius: var(--radius-normal);
 		background: var(--color-gray-500);
@@ -137,7 +222,7 @@
 			display: none;
 		}
 
-		&:hover {
+		&:hover, &.selected {
 			background: var(--color-gray-600);
 		}
 

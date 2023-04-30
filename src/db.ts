@@ -11,6 +11,7 @@ export interface Category {
 	title: string;
 	single: boolean;
 	audios: number[];
+
 	sounds?: Audio[];
 }
 

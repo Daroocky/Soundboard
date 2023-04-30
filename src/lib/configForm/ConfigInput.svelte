@@ -29,7 +29,7 @@
 		font-size: 0.9rem;
 		width: 100%;
 		padding: 0.5rem;
-		color: white;
+		color: var(--color-gray-100);
 		border: 2px solid var(--color-gray-500);
 		border-radius: var(--radius-normal);
 		background: var(--color-gray-700);

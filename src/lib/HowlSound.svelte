@@ -34,7 +34,7 @@
 		});
 
 		howl.on("end", () => {
-			if(!howl.loop()) {
+			if (!howl.loop()) {
 				isPlaying = false;
 			}
 			dispatch("end");
@@ -49,7 +49,7 @@
 	const seek = () => {
 		progress = howl.seek() / howl.duration() * 100;
 
-		if(!howl.playing()) {
+		if (!howl.playing()) {
 			return
 		}
 
@@ -105,10 +105,10 @@
 </script>
 
 <button
- on:click|stopPropagation
- disabled={isLoading}
- class:isPlaying
  class:isFading
+ class:isPlaying
+ disabled={isLoading}
+ on:click|stopPropagation
  style:--progress={progress+"%"}
 
 >
@@ -121,21 +121,21 @@
 
 <style>
   button {
-	  --progress: 0%;
-	  --color: hsl(237, 100%, 70%);
-
-    border-radius: 8px;
-    border: 2px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
     font-family: inherit;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: all 0.5s;
+    font-size: 1em;
+
+    font-weight: 500;
     position: relative;
     overflow: clip;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+    transition: all 0.5s;
+    color: var(--color-gray-100);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-color: var(--color-gray-900);
+    --progress: 0%;
+    --color: hsl(237, 100%, 70%);
   }
 
   button[disabled] {
@@ -151,20 +151,20 @@
   }
 
   button.isFading {
-	  --color: hsl(271, 100%, 70%)
+    --color: hsl(271, 100%, 70%)
   }
 
   .progress {
     position: absolute;
-    inset: 0;
     background: linear-gradient(90deg, var(--color) var(--progress, 0%), transparent var(--progress, 0%));
+    inset: 0;
   }
 
   .label {
     position: absolute;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    inset: 0;
   }
 </style>

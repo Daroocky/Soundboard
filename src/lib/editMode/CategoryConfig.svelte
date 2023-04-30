@@ -18,10 +18,28 @@
 	async function removeCategory() {
 		db.categories.delete(id);
 
+		//todo: delete all sounds
+
 		editObject.set({
 			type: "app",
 			id: 0
 		});
+	}
+
+	async function addSound() {
+		const addedSoundId = await db.audios.add({
+			name: "New Sound",
+			src: ""
+		});
+
+		db.categories.update(id, {
+			audios: [...data.audios, addedSoundId]
+		})
+
+		editObject.set({
+			type: "audio",
+			id: addedSoundId
+		})
 	}
 
 	async function updateTitle(e) {
@@ -39,8 +57,11 @@
 	<ConfigSection>
 		<ConfigInput label="Titel" on:input={updateTitle} value={data.title} />
 	</ConfigSection>
+	<ConfigSection>
+		<ConfigButton icon="add" on:click={addSound}>Add new sound</ConfigButton>
+	</ConfigSection>
 	<ConfigSection title="Danger Zone">
-		<ConfigButton icon="trash" on:click={removeCategory}>Delete this set</ConfigButton>
+		<ConfigButton icon="trash" on:click={removeCategory}>Delete this group</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 
