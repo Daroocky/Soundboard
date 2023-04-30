@@ -106,8 +106,8 @@
 
 <button
  class:isFading
+ class:isLoading
  class:isPlaying
- disabled={isLoading}
  on:click|stopPropagation
  style:--progress={progress+"%"}
 
@@ -138,7 +138,7 @@
     --color: hsl(237, 100%, 70%);
   }
 
-  button[disabled] {
+  .isLoading {
     opacity: 0.5;
   }
 

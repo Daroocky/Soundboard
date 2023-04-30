@@ -1,20 +1,13 @@
 <script lang="ts">
-	import {debounce} from "radash";
-	import {createEventDispatcher} from "svelte";
-
-	const dispatch = createEventDispatcher();
 	export let label = "";
 	export let value = "";
 
-	function onInput() {
-		dispatch("input", value)
-	}
 </script>
 
 <label>
 	<span>{label}</span>
 
-	<input bind:value on:input={debounce({ delay: 250}, onInput)} type="text">
+	<input bind:value on:input type="text">
 </label>
 
 <style lang="scss">

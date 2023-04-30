@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {debounce, title} from "radash";
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
@@ -13,27 +14,19 @@
 	let data = null;
 	$: loadData(id);
 
+	$: {
+		data = data;
+		updateData();
+	}
+
+	const updateData = debounce({delay: 500}, () => {
+		console.log("Update DB")
+		db.sounds.update(id, data);
+	});
+
 	async function loadData(audioId) {
 		data = null;
-		data = await db.audios.where("id").equals(audioId).first();
-	}
-
-	async function updateTitle(e) {
-		const name = e.detail
-		if (data.name === name) {
-			return
-		}
-
-		db.audios.update(id, {name});
-	}
-
-	async function removeAudio() {
-		db.audios.delete(id);
-
-		editObject.set({
-			type: "app",
-			id: 0
-		});
+		data = await db.sounds.where("id").equals(audioId).first();
 	}
 
 	const colors = [
@@ -63,29 +56,45 @@
 		{value: "Y"},
 	]
 
+
+	async function removeAudio() {
+		db.sounds.delete(id);
+
+		editObject.set({
+			type: "app",
+			id: 0
+		});
+	}
+
 	function newFileAdded(event) {
-		console.log(event.detail)
+		if (data.title === "") {
+			const {filename} = event.detail;
+			const newTitle = filename.slice(0, filename.lastIndexOf("."));
+			data.title = title(newTitle);
+		}
+
+		data.file = event.detail;
 	}
 </script>
 
 <ConfigForm {data}>
 	<ConfigSection>
-		<ConfigInput label="Title" on:input={updateTitle} value={data.name} />
-		<ConfigDropdown label="Color" let:option options={colors}>
+		<ConfigInput bind:value={data.title} label="Title" />
+		<ConfigDropdown bind:value={data.color} label="Color" let:option options={colors}>
 			<span class="colorOption">
 				<span class="colorPreview" style:--color={option.color}></span>
 				<span>{option.label}</span>
 			</span>
 		</ConfigDropdown>
-		<ConfigDropdown label="Shortcut" options={shortcuts} />
+		<ConfigDropdown bind:value={data.shortcut} label="Shortcut" options={shortcuts} />
 	</ConfigSection>
 	<ConfigSection title="Playback">
-		<ConfigCheckbox label="Loop" value={data.loop} />
-		<ConfigCheckbox label="Solo" value={data.loop} />
-		<ConfigCheckbox label="Pausable" value={data.loop} />
+		<ConfigCheckbox bind:value={data.loop} label="Loop" />
+		<ConfigCheckbox bind:value={data.solo} label="Solo" />
+		<ConfigCheckbox bind:value={data.pausable} label="Pausable" />
 	</ConfigSection>
 	<ConfigSection title="File">
-		<ConfigUpload on:upload={newFileAdded} />
+		<ConfigUpload on:upload={newFileAdded} value={data.file.filename} />
 	</ConfigSection>
 	<ConfigSection title="Danger Zone">
 		<ConfigButton icon="trash" on:click={removeAudio}>Delete this Sound</ConfigButton>

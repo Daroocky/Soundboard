@@ -8,23 +8,22 @@
 
 	export let id: number;
 
-	async function addCategory() {
-		const addedCategoryId = await db.categories.add({
-			title: "Neue Kategorie",
-			audios: [],
-			single: false
+	async function addGroup() {
+		const addedGroupId = await db.groups.add({
+			title: "New Group",
+			volume: 100,
 		});
 
 		editObject.set({
-			type: "category",
-			id: addedCategoryId
+			type: "group",
+			id: addedGroupId
 		})
 	}
 </script>
 
 <ConfigForm data="true">
 	<ConfigSection>
-		<ConfigButton icon="plus" on:click={addCategory}> Add Category</ConfigButton>
+		<ConfigButton icon="plus" on:click={addGroup}> Add group</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 

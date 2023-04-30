@@ -7,7 +7,7 @@
 	export let title = "";
 	export let single = "";
 
-	setContext("category", {
+	setContext("group", {
 		currentlyPlaying: writable(""),
 		single
 	});
@@ -15,7 +15,7 @@
 	function edit() {
 		if ($editMode) {
 			editObject.set({
-				type: "category",
+				type: "group",
 				id
 			});
 

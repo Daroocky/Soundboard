@@ -10,13 +10,13 @@
 	let data = null;
 	$: loadData(id);
 
-	async function loadData(categoryId) {
+	async function loadData(groupId) {
 		data = null;
-		data = await db.categories.where("id").equals(categoryId).first();
+		data = await db.groups.where("id").equals(groupId).first();
 	}
 
-	async function removeCategory() {
-		db.categories.delete(id);
+	async function removeGroup() {
+		db.groups.delete(id);
 
 		//todo: delete all sounds
 
@@ -27,14 +27,17 @@
 	}
 
 	async function addSound() {
-		const addedSoundId = await db.audios.add({
-			name: "New Sound",
-			src: ""
+		const addedSoundId = await db.sounds.add({
+			title: "",
+			color: "",
+			group: id,
+			file: {blob: "", filename: ""},
+			loop: false,
+			pausable: false,
+			shortcut: "",
+			solo: false,
+			volume: 100
 		});
-
-		db.categories.update(id, {
-			audios: [...data.audios, addedSoundId]
-		})
 
 		editObject.set({
 			type: "audio",
@@ -49,7 +52,7 @@
 			return
 		}
 
-		db.categories.update(id, {title});
+		db.groups.update(id, {title});
 	}
 </script>
 
@@ -61,7 +64,7 @@
 		<ConfigButton icon="add" on:click={addSound}>Add new sound</ConfigButton>
 	</ConfigSection>
 	<ConfigSection title="Danger Zone">
-		<ConfigButton icon="trash" on:click={removeCategory}>Delete this group</ConfigButton>
+		<ConfigButton icon="trash" on:click={removeGroup}>Delete this group</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 

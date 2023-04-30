@@ -9,7 +9,7 @@
 	export let loop: boolean;
 
 
-	const {currentlyPlaying, single} = getContext("category");
+	const {currentlyPlaying, single} = getContext("group");
 
 	let sound;
 	const howlConfig = {

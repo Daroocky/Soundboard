@@ -1,29 +1,37 @@
 import Dexie, {type Table} from 'dexie';
 
-export interface Audio {
+export interface Sound {
 	id?: number;
-	name: string;
-	src: string;
+	group: number;
+	title: string;
+	color: string;
+	shortcut: string;
+	loop: boolean;
+	solo: boolean;
+	pausable: boolean;
+	volume: number;
+	file: {
+		filename: string,
+		blob: string
+	}
 }
 
-export interface Category {
+export interface Group {
 	id?: number;
 	title: string;
-	single: boolean;
-	audios: number[];
-
-	sounds?: Audio[];
+	volume: number;
+	sounds?: Sound[];
 }
 
 export class Database extends Dexie {
-	audios!: Table<Audio>;
-	categories!: Table<Category>;
+	sounds!: Table<Sound>;
+	groups!: Table<Group>;
 
 	constructor() {
 		super('soundboard');
-		this.version(2).stores({
-			audios: '++id, name',
-			categories: "++id, title, single, *audios"
+		this.version(1).stores({
+			sounds: '++id, title, group',
+			groups: "++id, title"
 		});
 	}
 }

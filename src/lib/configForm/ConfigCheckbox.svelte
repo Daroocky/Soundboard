@@ -11,7 +11,7 @@
 </script>
 
 <label>
-	<input bind:value on:input type="checkbox">
+	<input bind:checked={value} on:input type="checkbox">
 
 	<span>{label}</span>
 </label>

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import AudioButton from "./lib/AudioButton.svelte";
-	import Category from "./lib/Category.svelte";
 	import AppConfig from "./lib/editMode/AppConfig.svelte";
 	import AudioConfig from "./lib/editMode/AudioConfig.svelte";
-	import CategoryConfig from "./lib/editMode/CategoryConfig.svelte";
+	import GroupConfig from "./lib/editMode/GroupConfig.svelte";
+	import Group from "./lib/Group.svelte";
 	import {editMode, editObject, state} from "./stores";
 
 	const editConfigs = {
 		audio: AudioConfig,
-		category: CategoryConfig,
+		group: GroupConfig,
 		app: AppConfig,
 	}
 
@@ -35,38 +35,38 @@
 		<button on:click={toggleEdit}>{$editMode ? "Edit Mode" : "Live Mode"}</button>
 
 		{#if $state}
-			{#each $state as category (category.id)}
-				<Category
-				 id={category.id}
-				 title={category.title}
-				 single={category.single}
+			{#each $state as group (group.id)}
+				<Group
+				 id={group.id}
+				 title={group.title}
+				 single={group.single}
 				>
-					{#each category.sounds as sound (sound.id)}
+					{#each group.sounds as sound (sound.id)}
 						<AudioButton
 						 id={sound.id}
-						 name={sound.name}
-						 src={sound.src}
+						 name={sound.title}
+						 src={sound.file.blob}
 						 loop={sound.loop}
 						/>
 					{/each}
-				</Category>
+				</Group>
 			{/each}
 		{/if}
 
 
 		<!--
-		<Category title="Ambiente" single={true}>
+		<Group title="Ambiente" single={true}>
 			<AudioButton name="Regen" loop={true}  src="src/assets/sounds/ambient/rain.mp3" />
 			<AudioButton name="Regen & Gewitter" loop={true}  src="src/assets/sounds/ambient/rain-thunder.mp3" />
 			<AudioButton name="Wald" loop={true}  src="src/assets/sounds/ambient/forest.mp3" />
-		</Category>
+		</Group>
 
 
-		<Category title="Soundeffects" single={false}>
+		<Group title="Soundeffects" single={false}>
 			<AudioButton name="Wolf" src="src/assets/sounds/sounds/wolf.mp3" />
 			<AudioButton name="Mann Schrei" src="src/assets/sounds/sounds/man-scream-121085.mp3" />
 			<AudioButton name="Frau Schrei" src="src/assets/sounds/sounds/girl_scream-6465.mp3" />
-		</Category>
+		</Group>
 		 -->
 	</main>
 

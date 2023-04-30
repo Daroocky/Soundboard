@@ -4,11 +4,11 @@ import {db} from "./db";
 
 
 export const state = liveQuery(async () => {
-	const categories = await db.categories.toArray();
+	const categories = await db.groups.toArray();
 
 	await Promise.all(
-		categories.map(async category => {
-			category.sounds = await db.audios.where("id").anyOf(category.audios).toArray();
+		categories.map(async group => {
+			group.sounds = await db.sounds.where("group").equals(group.id).toArray();
 		})
 	);
 
