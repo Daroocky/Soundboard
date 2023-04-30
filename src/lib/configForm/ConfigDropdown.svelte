@@ -64,8 +64,8 @@
 	.label {
 		font-size: 0.9rem;
 		display: block;
-		margin-bottom: 0.2rem;
-		color: hsl(0deg 0% 100% / 60%);
+		margin-bottom: 0;
+		color: var(--color-gray-400);
 	}
 
 	.dropdown {
@@ -73,6 +73,7 @@
 	}
 
 	button {
+		font-size: 0.9rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -80,15 +81,16 @@
 		padding: 0.5rem;
 		cursor: pointer;
 		color: white;
-		border: 2px solid hsl(0deg 0% 100% / 0%);
+		border: 2px solid var(--color-gray-500);
 		border-radius: 5px;
-		background: hsl(0deg 0% 100% / 10%);
+		background: var(--color-gray-500);
 
 		i {
 			transition: rotate 250ms ease-in-out;
 		}
 
-		&:focus {
+		&:focus-visible {
+			border-color: var(--color-primary);
 			outline: none;
 		}
 
@@ -115,27 +117,28 @@
 		pointer-events: none;
 		opacity: 0;
 		color: white;
-		border: 2px solid hsl(0deg 0% 100% / 0%);
-		border-radius: 5px;
-		background: hsl(0deg 0.79% 24.9%);
+		border: 2px solid var(--color-gray-500);
+		border-radius: var(--radius-normal);
+		background: var(--color-gray-500);
 		translate: 0 -1rem;
 	}
 
 	.option {
+		font-size: 0.9rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 0.5rem;
 		list-style: none;
 		cursor: pointer;
-		border-radius: 5px;
+		border-radius: var(--radius-normal);
 
 		i {
 			display: none;
 		}
 
 		&:hover {
-			background: hsl(0deg 0% 100% / 10%);
+			background: var(--color-gray-600);
 		}
 
 		&[aria-selected="true"] {

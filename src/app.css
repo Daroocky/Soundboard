@@ -1,17 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-weight: var(--weight-normal);
   line-height: 1.5;
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  color-scheme: light dark;
+  color: var(--color-gray-100);
+  background-color: var(--color-gray-800);
+  color-scheme: dark light;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+
+  --color-gray-100: hsl(0, 0%, 90%);
+  --color-gray-200: hsl(0, 0%, 86%);
+  --color-gray-300: hsl(0, 0%, 82%);
+  --color-gray-400: hsl(0, 0%, 78%);
+  --color-gray-500: hsl(0, 0%, 26%);
+  --color-gray-600: hsl(0, 0%, 22%);
+  --color-gray-700: hsl(0, 0%, 18%);
+  --color-gray-800: hsl(0, 0%, 14%);
+  --color-gray-900: hsl(0, 0%, 10%);
+
+  --color-primary: hsl(264, 100%, 70%);
+
+  --weight-normal: 400;
+  --weight-light: 300;
+  --weight-bold: 500;
+
+  --radius-normal: 0.5rem;
 }
 
 * {
@@ -19,15 +40,7 @@
 }
 
 body {
-  min-width: 320px;
-  min-height: 100vh;
   margin: 0;
-}
-
-#app {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
 }
 
 

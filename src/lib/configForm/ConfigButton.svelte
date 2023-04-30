@@ -15,13 +15,13 @@
 		width: 100%;
 		padding: 0.5rem;
 		cursor: pointer;
-		color: white;
-		border: 0;
-		border: 2px solid hsl(0deg 0% 100% / 0%);
-		border-radius: 5px;
-		background: hsl(0deg 0% 100% / 10%);
+		color: var(--color-gray-100);
+		border: 2px solid var(--color-gray-500);
+		border-radius: var(--radius-normal);
+		background: var(--color-gray-500);
 
-		&:focus {
+		&:focus-visible {
+			border-color: var(--color-primary);
 			outline: none;
 		}
 

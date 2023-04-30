@@ -15,12 +15,12 @@
 <style>
   section {
     padding: 1rem;
-    border-bottom: 1px solid hsl(0deg 0% 100% / 10%);
+    border-bottom: 1px solid var(--color-gray-500);
   }
 
   h2 {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: var(--weight-bold);
     margin: 0 0 1rem;
   }
 

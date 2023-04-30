@@ -91,9 +91,9 @@
 
   aside {
     display: none;
-    min-width: 350px;
-    max-width: 350px;
-    border-left: 1px solid hsl(0deg 0% 100% / 10%);
+    min-width: 22rem;
+    max-width: 22rem;
+    border-left: 1px solid var(--color-gray-500);
   }
 
   aside.open {
