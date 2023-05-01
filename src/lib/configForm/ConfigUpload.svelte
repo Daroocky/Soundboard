@@ -1,8 +1,9 @@
 <script lang="ts">
 	import {createEventDispatcher} from "svelte";
+	import {t} from "svelte-i18n";
 
 	const dispatch = createEventDispatcher();
-	export let label = "Drag your files here or click in this area.";
+	export let label = $t("form.upload.defaultLabel");
 	export let value = "";
 
 	function fileSelected(e) {
@@ -65,6 +66,7 @@
 		align-items: center;
 		justify-content: center;
 		margin-bottom: 0;
+		padding: 1rem;
 		color: var(--color-gray-400);
 		inset: 0;
 	}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {debounce} from "radash";
+	import {t} from "svelte-i18n";
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
@@ -55,27 +56,17 @@
 			id: addedSoundId
 		})
 	}
-
-	async function updateTitle(e) {
-		console.log(data.title, e.detail)
-		const title = e.detail
-		if (data.title === title) {
-			return
-		}
-
-		db.groups.update(id, {title});
-	}
 </script>
 
 <ConfigForm {data}>
 	<ConfigSection>
-		<ConfigInput bind:value={data.title} label="Titel" />
+		<ConfigInput bind:value={data.title} label={$t("config.group.title")} />
 	</ConfigSection>
 	<ConfigSection>
-		<ConfigButton icon="add" on:click={addSound}>Add new sound</ConfigButton>
+		<ConfigButton icon="add" on:click={addSound}>{$t("config.group.addSound")}</ConfigButton>
 	</ConfigSection>
-	<ConfigSection title="Danger Zone">
-		<ConfigButton icon="delete" on:click={removeGroup}>Delete this group</ConfigButton>
+	<ConfigSection title={$t("config.group.groupTitleDanger")}>
+		<ConfigButton icon="delete" on:click={removeGroup}>{$t("config.group.deleteGroup")}</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 

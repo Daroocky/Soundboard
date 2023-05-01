@@ -13,6 +13,19 @@
 	let open = false;
 	let currentOption: Option;
 	let currentFocus;
+
+	$: {
+		options = options.map(option => {
+			if (typeof option !== "object") {
+				return {
+					value: option
+				}
+			}
+
+			return option;
+		})
+	}
+
 	$: {
 		currentOption = options.find(option => option.value == value);
 
@@ -21,7 +34,6 @@
 			currentOption = options.find(option => option.value == value);
 		}
 	}
-
 
 	function selectOption(option: Option) {
 		value = option.value;

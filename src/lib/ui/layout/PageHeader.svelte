@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {t} from "svelte-i18n";
 	import {editMode, editObject} from "../../../stores";
 	import ConfigButton from "../../configForm/ConfigButton.svelte";
 	import Icon from "../Icon.svelte";
@@ -30,7 +31,7 @@
 
 	<div>
 		<ConfigButton icon={$editMode ? "screen_record" : "edit"} on:click={toggleEdit}>
-			{$editMode ? "Live" : "Edit"}
+			{$editMode ? $t("header.live") : $t("header.edit")}
 		</ConfigButton>
 	</div>
 </header>

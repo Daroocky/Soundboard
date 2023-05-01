@@ -1,7 +1,9 @@
 <script lang="ts">
 	import {debounce, title} from "radash";
+	import {t} from "svelte-i18n";
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
+	import {mapColor} from "../../utils/colorMapper.js";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
 	import ConfigCheckbox from "../configForm/ConfigCheckbox.svelte";
 	import ConfigDropdown from "../configForm/ConfigDropdown.svelte";
@@ -29,32 +31,9 @@
 		data = await db.sounds.where("id").equals(audioId).first();
 	}
 
-	const colors = [
-		{
-			value: "red",
-			label: "Red",
-			color: "var(--color-red)"
-		},
-		{
-			value: "green",
-			label: "Green",
-			color: "var(--color-green)"
-		},
-		{
-			value: "blue",
-			label: "Blue",
-			color: "var(--color-blue)"
-		}
-	];
+	const colors = ["red", "green", "blue"];
 
-	const shortcuts = [
-		{value: "Q"},
-		{value: "W"},
-		{value: "E"},
-		{value: "R"},
-		{value: "T"},
-		{value: "Y"},
-	]
+	const shortcuts = ["Q", "W", "E", "R", "T", "Y"]
 
 
 	async function removeAudio() {
@@ -79,25 +58,25 @@
 
 <ConfigForm {data}>
 	<ConfigSection>
-		<ConfigInput bind:value={data.title} label="Title" />
-		<ConfigDropdown bind:value={data.color} label="Color" let:option options={colors}>
+		<ConfigInput bind:value={data.title} label={$t("config.sound.title")} />
+		<ConfigDropdown bind:value={data.color} label={$t("config.sound.color")} let:option options={colors}>
 			<span class="colorOption">
-				<span class="colorPreview" style:--color={option.color}></span>
-				<span>{option.label}</span>
+				<span class="colorPreview" style:--color={mapColor(option.value)}></span>
+				<span>{$t("config.sound.colors." + option.value)}</span>
 			</span>
 		</ConfigDropdown>
-		<ConfigDropdown bind:value={data.shortcut} label="Shortcut" options={shortcuts} />
+		<ConfigDropdown bind:value={data.shortcut} label={$t("config.sound.shortcut")} options={shortcuts} />
 	</ConfigSection>
-	<ConfigSection title="Playback">
-		<ConfigCheckbox bind:value={data.loop} label="Loop" />
-		<ConfigCheckbox bind:value={data.solo} label="Solo" />
-		<ConfigCheckbox bind:value={data.pausable} label="Pausable" />
+	<ConfigSection title={$t("config.sound.groupTitlePlayback")}>
+		<ConfigCheckbox bind:value={data.loop} label={$t("config.sound.loop")} />
+		<ConfigCheckbox bind:value={data.solo} label={$t("config.sound.solo")} />
+		<ConfigCheckbox bind:value={data.pausable} label={$t("config.sound.pausable")} />
 	</ConfigSection>
-	<ConfigSection title="File">
+	<ConfigSection title={$t("config.sound.groupTitleFile")}>
 		<ConfigUpload on:upload={newFileAdded} value={data.file.filename} />
 	</ConfigSection>
-	<ConfigSection title="Danger Zone">
-		<ConfigButton icon="delete" on:click={removeAudio}>Delete this Sound</ConfigButton>
+	<ConfigSection title={$t("config.sound.groupTitleDanger")}>
+		<ConfigButton icon="delete" on:click={removeAudio}>{$t("config.sound.deleteSound")}</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 

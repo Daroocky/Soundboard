@@ -1,0 +1,44 @@
+{
+  "header": {
+    "edit": "Edit",
+    "live": "Live"
+  },
+  "config": {
+    "app": {
+      "groupTitleApp": "App",
+      "languages": {
+        "en": "English",
+        "de": "Deutsch"
+      },
+      "addGroup": "Add group"
+    },
+    "group": {
+      "title": "Title",
+      "addSound": "Add new sound",
+      "groupTitleDanger": "Danger zone",
+      "deleteGroup": "Delete group"
+    },
+    "sound": {
+      "title": "Title",
+      "color": "Color",
+      "colors": {
+        "red": "Red",
+        "green": "Green",
+        "blue": "Blue"
+      },
+      "shortcut": "Shortcut",
+      "groupTitlePlayback": "Playback",
+      "loop": "Loop",
+      "solo": "Solo",
+      "pausable": "Pausable",
+      "groupTitleFile": "File",
+      "groupTitleDanger": "Danger zone",
+      "deleteSound": "Delete this sound"
+    }
+  },
+  "form": {
+    "upload": {
+      "defaultLabel": "Drag your files here or click in this area."
+    }
+  }
+}

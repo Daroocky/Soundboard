@@ -22,6 +22,7 @@
   "dependencies": {
     "dexie": "^4.0.1-alpha.10",
     "howler": "^2.2.3",
-    "radash": "^10.8.1"
+    "radash": "^10.8.1",
+    "svelte-i18n": "^3.6.0"
   }
 }
