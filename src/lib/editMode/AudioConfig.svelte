@@ -19,7 +19,7 @@
 		updateData();
 	}
 
-	const updateData = debounce({delay: 500}, () => {
+	const updateData = debounce({delay: 250}, () => {
 		console.log("Update DB")
 		db.sounds.update(id, data);
 	});
@@ -97,7 +97,7 @@
 		<ConfigUpload on:upload={newFileAdded} value={data.file.filename} />
 	</ConfigSection>
 	<ConfigSection title="Danger Zone">
-		<ConfigButton icon="trash" on:click={removeAudio}>Delete this Sound</ConfigButton>
+		<ConfigButton icon="delete" on:click={removeAudio}>Delete this Sound</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 

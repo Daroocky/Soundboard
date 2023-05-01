@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {createEventDispatcher} from "svelte";
 	import {clickOutside} from "../../utils/clickOutside";
+	import Icon from "../ui/Icon.svelte";
 
 	type Option = { value: string } & { [name: string]: unknown };
 
@@ -123,7 +124,7 @@
 			<slot option="{currentOption}">{currentOption.value}</slot>
 			{/if}
 		</span>
-		<i class="fa fa-chevron-down"></i>
+		<Icon name="expand_more" />
 	</button>
 	<ul class="options" class:open role="listbox">
 		{#each options as option, i (option.value)}
@@ -134,7 +135,7 @@
 			 aria-selected={value == option.value}
 			 on:click={() => selectOption(option)}>
 				<span><slot {option}>{option.value}</slot></span>
-				<i class="fa fa-check"></i>
+				<Icon name="check" />
 			</li>
 		{/each}
 	</ul>
@@ -170,7 +171,7 @@
 		border-radius: 5px;
 		background: var(--color-gray-500);
 
-		i {
+		:global(.icon) {
 			transition: rotate 250ms ease-in-out;
 		}
 
@@ -180,7 +181,7 @@
 		}
 
 		&[aria-expanded="true"] {
-			i {
+			:global(.icon) {
 				rotate: 180deg;
 			}
 
@@ -218,7 +219,7 @@
 		cursor: pointer;
 		border-radius: var(--radius-normal);
 
-		i {
+		:global(.icon) {
 			display: none;
 		}
 
@@ -227,7 +228,7 @@
 		}
 
 		&[aria-selected="true"] {
-			i {
+			:global(.icon) {
 				display: block;
 			}
 		}

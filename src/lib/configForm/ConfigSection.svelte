@@ -21,7 +21,7 @@
   h2 {
     font-size: 1rem;
     font-weight: var(--weight-bold);
-    margin: 0 0 1rem;
+    margin: 0 0 0.5rem;
   }
 
   div {

@@ -1,17 +1,22 @@
 <script lang="ts">
+	import Icon from "../ui/Icon.svelte";
+
 	export let icon = "";
 </script>
 
 <button on:click>
 	{#if icon}
-		<i class={"fa fa-"+icon}></i>
+		<Icon name={icon} />
 	{/if}
 
-	<slot></slot>
+	<span><slot></slot></span>
 </button>
 
 <style lang="scss">
 	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
 		padding: 0.5rem;
 		cursor: pointer;
@@ -19,14 +24,11 @@
 		border: 2px solid var(--color-gray-500);
 		border-radius: var(--radius-normal);
 		background: var(--color-gray-500);
+		gap: 0.4rem;
 
 		&:focus-visible {
 			border-color: var(--color-primary);
 			outline: none;
-		}
-
-		i {
-			margin-right: 0.4rem;
 		}
 	}
 </style>

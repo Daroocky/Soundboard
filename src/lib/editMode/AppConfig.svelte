@@ -23,7 +23,7 @@
 
 <ConfigForm data="true">
 	<ConfigSection>
-		<ConfigButton icon="plus" on:click={addGroup}> Add group</ConfigButton>
+		<ConfigButton icon="add" on:click={addGroup}> Add group</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 

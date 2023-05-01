@@ -53,6 +53,7 @@
  isFading={$isFading}
  isLoading={$isLoading}
  isPlaying={$isPlaying}
+ {loop}
  on:click={onClick}
  progress={$progress}
 >{title}</SoundButton>

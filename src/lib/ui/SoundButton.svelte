@@ -6,6 +6,7 @@
 	export let isLoading = true;
 	export let isFading = false;
 	export let progress = 0;
+	export let loop = false;
 </script>
 
 <button
@@ -20,6 +21,9 @@
 	<span class="label">
 		<slot></slot>
 	</span>
+	{#if loop}
+		<i class="loop fa fa-rotate-left"></i>
+	{/if}
 </button>
 
 <style lang="scss">
@@ -50,6 +54,14 @@
 
 	button.isFading {
 		border-color: yellow;
+	}
+
+	.loop {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		color: var(--color, var(--color-primary));
+		mix-blend-mode: difference;
 	}
 
 	.progress {

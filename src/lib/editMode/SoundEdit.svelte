@@ -18,5 +18,5 @@
 	}
 </script>
 
-<SoundButton {color} isLoading={false} isPlaying={$editObject.type === "audio" && $editObject.id === id}
+<SoundButton {color} isLoading={false} isPlaying={$editObject.type === "audio" && $editObject.id === id} {loop}
  on:click={edit}>{title}</SoundButton>

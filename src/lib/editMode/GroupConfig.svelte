@@ -75,7 +75,7 @@
 		<ConfigButton icon="add" on:click={addSound}>Add new sound</ConfigButton>
 	</ConfigSection>
 	<ConfigSection title="Danger Zone">
-		<ConfigButton icon="trash" on:click={removeGroup}>Delete this group</ConfigButton>
+		<ConfigButton icon="delete" on:click={removeGroup}>Delete this group</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 
