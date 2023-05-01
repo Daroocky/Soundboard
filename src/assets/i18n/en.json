@@ -23,8 +23,13 @@
       "color": "Color",
       "colors": {
         "red": "Red",
+        "orange": "Orange",
+        "yellow": "Yellow",
         "green": "Green",
-        "blue": "Blue"
+        "turquoise": "Turquoise",
+        "blue": "Blue",
+        "purple": "Purple",
+        "pink": "Pink"
       },
       "shortcut": "Shortcut",
       "groupTitlePlayback": "Playback",
@@ -39,6 +44,9 @@
   "form": {
     "upload": {
       "defaultLabel": "Drag your files here or click in this area."
+    },
+    "delete": {
+      "confirm": "Are you sure?"
     }
   }
 }

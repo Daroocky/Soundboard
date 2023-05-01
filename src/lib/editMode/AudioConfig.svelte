@@ -4,8 +4,8 @@
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
 	import {mapColor} from "../../utils/colorMapper.js";
-	import ConfigButton from "../configForm/ConfigButton.svelte";
 	import ConfigCheckbox from "../configForm/ConfigCheckbox.svelte";
+	import ConfigDelete from "../configForm/ConfigDelete.svelte";
 	import ConfigDropdown from "../configForm/ConfigDropdown.svelte";
 	import ConfigForm from "../configForm/ConfigForm.svelte";
 	import ConfigInput from "../configForm/ConfigInput.svelte";
@@ -31,7 +31,7 @@
 		data = await db.sounds.where("id").equals(audioId).first();
 	}
 
-	const colors = ["red", "green", "blue"];
+	const colors = ["red", "orange", "yellow", "green", "turquoise", "blue", "purple", "pink"];
 
 	const shortcuts = ["Q", "W", "E", "R", "T", "Y"]
 
@@ -76,7 +76,7 @@
 		<ConfigUpload on:upload={newFileAdded} value={data.file.filename} />
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitleDanger")}>
-		<ConfigButton icon="delete" on:click={removeAudio}>{$t("config.sound.deleteSound")}</ConfigButton>
+		<ConfigDelete on:delete={removeAudio}>{$t("config.sound.deleteSound")}</ConfigDelete>
 	</ConfigSection>
 </ConfigForm>
 

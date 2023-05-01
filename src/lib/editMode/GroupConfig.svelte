@@ -4,6 +4,7 @@
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
+	import ConfigDelete from "../configForm/ConfigDelete.svelte";
 	import ConfigForm from "../configForm/ConfigForm.svelte";
 	import ConfigInput from "../configForm/ConfigInput.svelte";
 	import ConfigSection from "../configForm/ConfigSection.svelte";
@@ -56,6 +57,8 @@
 			id: addedSoundId
 		})
 	}
+
+
 </script>
 
 <ConfigForm {data}>
@@ -66,7 +69,7 @@
 		<ConfigButton icon="add" on:click={addSound}>{$t("config.group.addSound")}</ConfigButton>
 	</ConfigSection>
 	<ConfigSection title={$t("config.group.groupTitleDanger")}>
-		<ConfigButton icon="delete" on:click={removeGroup}>{$t("config.group.deleteGroup")}</ConfigButton>
+		<ConfigDelete on:delete={removeGroup}>{$t("config.group.deleteGroup")}</ConfigDelete>
 	</ConfigSection>
 </ConfigForm>
 

@@ -2,9 +2,11 @@
 	import Icon from "../ui/Icon.svelte";
 
 	export let icon = "";
+	export let disabled = false;
+	export let danger = false
 </script>
 
-<button on:click>
+<button class:danger {disabled} on:click on:focusout on:pointerleave>
 	{#if icon}
 		<Icon name={icon} />
 	{/if}
@@ -25,6 +27,16 @@
 		border-radius: var(--radius-normal);
 		background: var(--color-gray-500);
 		gap: 0.4rem;
+
+		&.danger {
+			color: var(--color-gray-900);
+			border-color: var(--color-red);
+			background-color: var(--color-red);
+		}
+
+		&[disabled] {
+			opacity: 0.5;
+		}
 
 		&:focus-visible {
 			border-color: var(--color-primary);
