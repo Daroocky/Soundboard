@@ -15,7 +15,7 @@ export const state = liveQuery(async () => {
 	return categories
 });
 
-export const editMode = writable(true);
+export const editMode = writable(false);
 export const editObject = writable<{
 	type: string,
 	id: number

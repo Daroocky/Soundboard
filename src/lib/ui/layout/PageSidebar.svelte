@@ -13,7 +13,7 @@
 </script>
 
 <aside>
-	<svelte:component id="{$editObject.id}" this={editConfigs[$editObject?.type]} />
+	<svelte:component id="{$editObject?.id}" this={editConfigs[$editObject?.type]} />
 </aside>
 
 

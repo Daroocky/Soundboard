@@ -6,10 +6,18 @@
 	function toggleEdit() {
 		editMode.set(!$editMode);
 
-		editObject.set({
-			type: "app",
-			id: 0
-		});
+		if ($editMode) {
+			editObject.set({
+				type: "app",
+				id: 0
+			});
+			return;
+		}
+
+		setTimeout(() => {
+			editObject.set(null);
+		}, 250)
+
 	}
 </script>
 
