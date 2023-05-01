@@ -4,7 +4,11 @@
 
 	const dispatch = createEventDispatcher();
 	export let label = $t("form.upload.defaultLabel");
-	export let value = "";
+	export let value;
+
+	let filename = "";
+
+	$: filename = value?.filename || "";
 
 	function fileSelected(e) {
 		const {files} = e.target;
@@ -22,14 +26,16 @@
 		}
 
 
-		value = file.name;
+		filename = file.name;
 
 		const reader = new FileReader();
 		reader.addEventListener("load", data => {
-			dispatch("upload", {
+			value = {
 				filename: file.name,
 				blob: reader.result
-			});
+			}
+
+			dispatch("upload", value);
 		});
 		reader.addEventListener("progress", data => {
 			console.log(data);
@@ -41,7 +47,7 @@
 
 <label class="dropzone">
 	<span class="label">
-		{value ? value : label}
+		{filename ? filename : label}
 	</span>
 	<input accept="audio/*" on:change={fileSelected} type="file">
 </label>
@@ -76,5 +82,6 @@
 		cursor: pointer;
 		opacity: 0;
 		inset: 0;
+		appearance: none;
 	}
 </style>

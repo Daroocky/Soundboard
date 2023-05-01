@@ -19,7 +19,7 @@
 
 <main on:click={edit}>
 	{#if $state}
-		{#each $state as group (group.id)}
+		{#each $state.groups as group (group.id)}
 			<svelte:component this={$editMode ? GroupEdit : Group}
 			 id={group.id}
 			 title={group.title}

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {debounce} from "radash";
 	import {t} from "svelte-i18n";
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
+	import {createConfigStore} from "../../utils/configDataStore";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
 	import ConfigDelete from "../configForm/ConfigDelete.svelte";
 	import ConfigForm from "../configForm/ConfigForm.svelte";
@@ -10,23 +10,14 @@
 	import ConfigSection from "../configForm/ConfigSection.svelte";
 
 	export let id: number;
-	let data = null;
-	$: loadData(id);
 
-	async function loadData(groupId) {
-		data = null;
-		data = await db.groups.where("id").equals(groupId).first();
-	}
-
-	$: {
-		data = data;
-		updateData();
-	}
-
-	const updateData = debounce({delay: 500}, () => {
-		console.log("Update DB")
-		db.groups.update(id, data);
+	const {data, reloadData, onDataChanged} = createConfigStore(() => {
+		return db.groups.where("id").equals(id).first();
 	});
+
+	$: reloadData(id)
+
+	onDataChanged(newData => db.groups.update(id, newData));
 
 	async function removeGroup() {
 		db.groups.delete(id);
@@ -61,9 +52,9 @@
 
 </script>
 
-<ConfigForm {data}>
+<ConfigForm data={$data}>
 	<ConfigSection>
-		<ConfigInput bind:value={data.title} label={$t("config.group.title")} />
+		<ConfigInput bind:value={$data.title} label={$t("config.group.title")} />
 	</ConfigSection>
 	<ConfigSection>
 		<ConfigButton icon="add" on:click={addSound}>{$t("config.group.addSound")}</ConfigButton>

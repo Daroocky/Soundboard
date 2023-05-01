@@ -1,9 +1,10 @@
 <script lang="ts">
-	import {debounce, title} from "radash";
+	import {title} from "radash";
 	import {t} from "svelte-i18n";
 	import {db} from "../../db";
 	import {editObject} from "../../stores";
 	import {mapColor} from "../../utils/colorMapper.js";
+	import {createConfigStore} from "../../utils/configDataStore";
 	import ConfigCheckbox from "../configForm/ConfigCheckbox.svelte";
 	import ConfigDelete from "../configForm/ConfigDelete.svelte";
 	import ConfigDropdown from "../configForm/ConfigDropdown.svelte";
@@ -13,27 +14,19 @@
 	import ConfigUpload from "../configForm/ConfigUpload.svelte";
 
 	export let id: number;
-	let data = null;
-	$: loadData(id);
 
-	$: {
-		data = data;
-		updateData();
-	}
-
-	const updateData = debounce({delay: 250}, () => {
-		console.log("Update DB")
-		db.sounds.update(id, data);
+	const {data, reloadData, onDataChanged} = createConfigStore(() => {
+		return db.sounds.where("id").equals(id).first();
 	});
 
-	async function loadData(audioId) {
-		data = null;
-		data = await db.sounds.where("id").equals(audioId).first();
-	}
+	$: reloadData(id)
+
+	onDataChanged(newData => db.sounds.update(id, newData));
+
 
 	const colors = ["red", "orange", "yellow", "green", "turquoise", "blue", "purple", "pink"];
 
-	const shortcuts = ["Q", "W", "E", "R", "T", "Y"]
+	const shortcuts = ["", "Q", "W", "E", "R", "T", "Y"]
 
 
 	async function removeAudio() {
@@ -46,34 +39,32 @@
 	}
 
 	function newFileAdded(event) {
-		if (data.title === "") {
+		if ($data.title === "") {
 			const {filename} = event.detail;
 			const newTitle = filename.slice(0, filename.lastIndexOf("."));
-			data.title = title(newTitle);
+			$data.title = title(newTitle);
 		}
-
-		data.file = event.detail;
 	}
 </script>
 
-<ConfigForm {data}>
+<ConfigForm data={$data}>
 	<ConfigSection>
-		<ConfigInput bind:value={data.title} label={$t("config.sound.title")} />
-		<ConfigDropdown bind:value={data.color} label={$t("config.sound.color")} let:option options={colors}>
+		<ConfigInput bind:value={$data.title} label={$t("config.sound.title")} />
+		<ConfigDropdown bind:value={$data.color} label={$t("config.sound.color")} let:option options={colors}>
 			<span class="colorOption">
 				<span class="colorPreview" style:--color={mapColor(option.value)}></span>
 				<span>{$t("config.sound.colors." + option.value)}</span>
 			</span>
 		</ConfigDropdown>
-		<ConfigDropdown bind:value={data.shortcut} label={$t("config.sound.shortcut")} options={shortcuts} />
+		<ConfigDropdown bind:value={$data.shortcut} label={$t("config.sound.shortcut")} options={shortcuts} />
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitlePlayback")}>
-		<ConfigCheckbox bind:value={data.loop} label={$t("config.sound.loop")} />
-		<ConfigCheckbox bind:value={data.solo} label={$t("config.sound.solo")} />
-		<ConfigCheckbox bind:value={data.pausable} label={$t("config.sound.pausable")} />
+		<ConfigCheckbox bind:value={$data.loop} label={$t("config.sound.loop")} />
+		<ConfigCheckbox bind:value={$data.solo} label={$t("config.sound.solo")} />
+		<ConfigCheckbox bind:value={$data.pausable} label={$t("config.sound.pausable")} />
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitleFile")}>
-		<ConfigUpload on:upload={newFileAdded} value={data.file.filename} />
+		<ConfigUpload bind:value={$data.file} on:upload={newFileAdded} />
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitleDanger")}>
 		<ConfigDelete on:delete={removeAudio}>{$t("config.sound.deleteSound")}</ConfigDelete>

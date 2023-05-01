@@ -21,6 +21,7 @@
 	<span class="label">
 		<slot></slot>
 	</span>
+	<!-- <span class="shortcut">E</span> -->
 	{#if loop}
 		<i class="loop fa fa-rotate-left"></i>
 	{/if}
@@ -29,10 +30,9 @@
 <style lang="scss">
 	button {
 		font-family: inherit;
-		font-size: 1em;
 		font-weight: 500;
-
 		position: relative;
+
 		overflow: clip;
 		padding: 0.6em 1.2em;
 		cursor: pointer;
@@ -42,24 +42,25 @@
 		background-color: var(--color-gray-900);
 		container-type: inline-size;
 		--progress: 0%;
-	}
+		aspect-ratio: 16 / 9;
 
-	.isLoading {
-		opacity: 0.5;
-	}
+		&.isLoading {
+			opacity: 0.5;
+		}
 
-	button.isPlaying {
-		border-color: var(--color, var(--color-primary));
-	}
+		&.isPlaying {
+			border-color: var(--color, var(--color-primary));
+		}
 
-	button.isFading {
-		border-color: yellow;
+		&.isFading {
+			border-color: yellow;
+		}
 	}
 
 	.loop {
 		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
+		top: 0.2rem;
+		right: 0.2rem;
 		color: var(--color, var(--color-primary));
 		mix-blend-mode: difference;
 	}
@@ -71,13 +72,24 @@
 	}
 
 	.label {
-		font-size: 1.2rem;
+		font-size: 10cqmin;
 		position: absolute;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 0.4rem;
 		color: var(--color, var(--color-primary));
 		inset: 0;
 		mix-blend-mode: difference;
+	}
+
+	.shortcut {
+		font-size: 0.8rem;
+		position: absolute;
+		top: 0.4rem;
+		left: 0.4rem;
+		padding: 0.1rem 0.6rem;
+		border-radius: var(--radius-normal);
+		background-color: var(--color);
 	}
 </style>
