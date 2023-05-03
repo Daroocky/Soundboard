@@ -1,12 +1,12 @@
 <script lang="ts">
 	import {locales, t} from "svelte-i18n";
-	import {db} from "../../db";
-	import {editObject, state} from "../../stores";
-	import {createConfigStore} from "../../utils/configDataStore";
-	import ConfigButton from "../configForm/ConfigButton.svelte";
-	import ConfigDropdown from "../configForm/ConfigDropdown.svelte";
-	import ConfigForm from "../configForm/ConfigForm.svelte";
-	import ConfigSection from "../configForm/ConfigSection.svelte";
+	import {db} from "../../../db";
+	import {editObject, state} from "../../../stores";
+	import {createConfigStore} from "../../../utils/configDataStore";
+	import ConfigButton from "../inputs/ConfigButton.svelte";
+	import ConfigDropdown from "../inputs/ConfigDropdown.svelte";
+	import ConfigForm from "../inputs/ConfigForm.svelte";
+	import ConfigSection from "../inputs/ConfigSection.svelte";
 
 	export let id: number;
 

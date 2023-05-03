@@ -1,7 +1,7 @@
 <script lang="ts">
-	import PageHeader from "./lib/ui/layout/PageHeader.svelte";
-	import PageMain from "./lib/ui/layout/PageMain.svelte";
-	import PageSidebar from "./lib/ui/layout/PageSidebar.svelte";
+	import PageHeader from "./lib/layout/PageHeader.svelte";
+	import PageMain from "./lib/layout/PageMain.svelte";
+	import PageSidebar from "./lib/layout/PageSidebar.svelte";
 	import {editMode} from "./stores";
 </script>
 

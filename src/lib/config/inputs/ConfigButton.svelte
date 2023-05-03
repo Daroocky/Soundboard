@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from "../ui/Icon.svelte";
+	import Icon from "../../ui/Icon.svelte";
 
 	export let icon = "";
 	export let disabled = false;

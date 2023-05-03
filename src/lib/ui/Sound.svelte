@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {getContext} from "svelte";
-	import {createSoundPlayer} from "../utils/soundPlayer";
-	import SoundButton from "./ui/SoundButton.svelte";
+	import {createSoundPlayer} from "../../utils/soundPlayer";
+	import SoundButton from "./SoundButton.svelte";
 
 	export let id;
 	export let title = "";

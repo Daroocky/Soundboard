@@ -3,7 +3,6 @@
 	export let title = "";
 	export let selected = false;
 	export let interactable = false;
-
 </script>
 
 <section class:interactable class:selected on:click|stopPropagation tabindex={interactable ? 0 : false}>

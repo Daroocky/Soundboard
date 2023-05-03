@@ -1,17 +1,17 @@
 <script lang="ts">
 	import {title} from "radash";
 	import {t} from "svelte-i18n";
-	import {db} from "../../db";
-	import {editObject} from "../../stores";
-	import {mapColor} from "../../utils/colorMapper.js";
-	import {createConfigStore} from "../../utils/configDataStore";
-	import ConfigCheckbox from "../configForm/ConfigCheckbox.svelte";
-	import ConfigDelete from "../configForm/ConfigDelete.svelte";
-	import ConfigDropdown from "../configForm/ConfigDropdown.svelte";
-	import ConfigForm from "../configForm/ConfigForm.svelte";
-	import ConfigInput from "../configForm/ConfigInput.svelte";
-	import ConfigSection from "../configForm/ConfigSection.svelte";
-	import ConfigUpload from "../configForm/ConfigUpload.svelte";
+	import {db} from "../../../db";
+	import {editObject} from "../../../stores";
+	import {mapColor} from "../../../utils/colorMapper.js";
+	import {createConfigStore} from "../../../utils/configDataStore";
+	import ConfigCheckbox from "../inputs/ConfigCheckbox.svelte";
+	import ConfigDelete from "../inputs/ConfigDelete.svelte";
+	import ConfigDropdown from "../inputs/ConfigDropdown.svelte";
+	import ConfigForm from "../inputs/ConfigForm.svelte";
+	import ConfigInput from "../inputs/ConfigInput.svelte";
+	import ConfigSection from "../inputs/ConfigSection.svelte";
+	import ConfigUpload from "../inputs/ConfigUpload.svelte";
 
 	export let id: number;
 

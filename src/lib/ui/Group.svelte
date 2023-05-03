@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {setContext} from "svelte";
 	import {writable} from "svelte/store";
-	import GroupElement from "./ui/GroupElement.svelte";
+	import GroupElement from "./GroupElement.svelte";
 
 	export let id = -1;
 	export let title = "";

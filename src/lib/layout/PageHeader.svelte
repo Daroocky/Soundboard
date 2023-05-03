@@ -1,8 +1,8 @@
 <script lang="ts">
 	import {t} from "svelte-i18n";
-	import {editMode, editObject} from "../../../stores";
-	import ConfigButton from "../../configForm/ConfigButton.svelte";
-	import Icon from "../Icon.svelte";
+	import {editMode, editObject} from "../../stores";
+	import ConfigButton from "../config/inputs/ConfigButton.svelte";
+	import Icon from "../ui/Icon.svelte";
 
 	function toggleEdit() {
 		editMode.set(!$editMode);

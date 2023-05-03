@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {editObject} from "../../../stores.ts";
-	import AppConfig from "../../editMode/AppConfig.svelte";
-	import AudioConfig from "../../editMode/AudioConfig.svelte";
-	import GroupConfig from "../../editMode/GroupConfig.svelte";
+	import {editObject} from "../../stores.ts";
+	import AppConfig from "../config/forms/AppConfig.svelte";
+	import AudioConfig from "../config/forms/AudioConfig.svelte";
+	import GroupConfig from "../config/forms/GroupConfig.svelte";
 
 	const editConfigs = {
 		audio: AudioConfig,

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {createEventDispatcher} from "svelte";
-	import {clickOutside} from "../../utils/clickOutside";
-	import Icon from "../ui/Icon.svelte";
+	import {clickOutside} from "../../../utils/clickOutside";
+	import Icon from "../../ui/Icon.svelte";
 
 	type Option = { value: string } & { [name: string]: unknown };
 

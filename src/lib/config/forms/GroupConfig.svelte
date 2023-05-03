@@ -1,13 +1,13 @@
 <script lang="ts">
 	import {t} from "svelte-i18n";
-	import {db} from "../../db";
-	import {editObject} from "../../stores";
-	import {createConfigStore} from "../../utils/configDataStore";
-	import ConfigButton from "../configForm/ConfigButton.svelte";
-	import ConfigDelete from "../configForm/ConfigDelete.svelte";
-	import ConfigForm from "../configForm/ConfigForm.svelte";
-	import ConfigInput from "../configForm/ConfigInput.svelte";
-	import ConfigSection from "../configForm/ConfigSection.svelte";
+	import {db} from "../../../db";
+	import {editObject} from "../../../stores";
+	import {createConfigStore} from "../../../utils/configDataStore";
+	import ConfigButton from "../inputs/ConfigButton.svelte";
+	import ConfigDelete from "../inputs/ConfigDelete.svelte";
+	import ConfigForm from "../inputs/ConfigForm.svelte";
+	import ConfigInput from "../inputs/ConfigInput.svelte";
+	import ConfigSection from "../inputs/ConfigSection.svelte";
 
 	export let id: number;
 
