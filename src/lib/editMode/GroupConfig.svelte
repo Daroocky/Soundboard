@@ -33,6 +33,7 @@
 	async function addSound() {
 		const addedSoundId = await db.sounds.add({
 			title: "",
+			position: Date.now(),
 			color: "",
 			group: id,
 			file: {blob: "", filename: ""},

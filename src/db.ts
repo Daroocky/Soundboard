@@ -7,6 +7,7 @@ export interface App {
 
 export interface Sound {
 	id?: number;
+	position: number;
 	group: number;
 	title: string;
 	color: string;
@@ -23,6 +24,7 @@ export interface Sound {
 
 export interface Group {
 	id?: number;
+	position: number;
 	title: string;
 	volume: number;
 	sounds?: Sound[];
@@ -37,8 +39,8 @@ export class Database extends Dexie {
 		super('soundboard');
 		this.version(1).stores({
 			app: "++id",
-			sounds: '++id, title, group',
-			groups: "++id, title"
+			sounds: '++id, title, group, position',
+			groups: "++id, title, position"
 		});
 	}
 }

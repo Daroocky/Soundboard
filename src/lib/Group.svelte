@@ -12,7 +12,9 @@
 </script>
 
 <GroupElement {title}>
-	<slot />
+	<div>
+		<slot />
+	</div>
 </GroupElement>
 
 

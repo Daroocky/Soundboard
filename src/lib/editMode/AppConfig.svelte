@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {locales, t} from "svelte-i18n";
 	import {db} from "../../db";
-	import {editObject} from "../../stores";
+	import {editObject, state} from "../../stores";
 	import {createConfigStore} from "../../utils/configDataStore";
 	import ConfigButton from "../configForm/ConfigButton.svelte";
 	import ConfigDropdown from "../configForm/ConfigDropdown.svelte";
@@ -20,6 +20,7 @@
 		const addedGroupId = await db.groups.add({
 			title: "",
 			volume: 100,
+			position: $state.groups.length
 		});
 
 		editObject.set({

@@ -1,14 +1,14 @@
 <script lang="ts">
+
 	export let title = "";
 	export let selected = false;
 	export let interactable = false;
+
 </script>
 
 <section class:interactable class:selected on:click|stopPropagation tabindex={interactable ? 0 : false}>
 	<h2>{title}</h2>
-	<div class="soundgrid">
-		<slot></slot>
-	</div>
+	<slot></slot>
 </section>
 
 <style lang="scss">
@@ -26,6 +26,14 @@
 		&.selected {
 			border-color: var(--color-primary);
 		}
+
+		:global(> div) {
+			display: grid;
+			width: 100%;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			grid-auto-rows: minmax(80px, auto);
+			gap: 10px;
+		}
 	}
 
 	h2 {
@@ -33,13 +41,5 @@
 		font-weight: var(--weight-bold);
 		margin: 0 0 1rem;
 		text-align: left;
-	}
-
-	.soundgrid {
-		display: grid;
-		width: 100%;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-		grid-auto-rows: minmax(80px, auto);
-		gap: 10px;
 	}
 </style>

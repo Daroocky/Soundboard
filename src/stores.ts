@@ -16,11 +16,11 @@ export const state = liveQuery(async () => {
 
 	locale.set(app.language);
 
-	const groups = await db.groups.toArray();
+	const groups = await db.groups.orderBy("position").toArray();
 
 	await Promise.all(
 		groups.map(async group => {
-			group.sounds = await db.sounds.where("group").equals(group.id).toArray();
+			group.sounds = await db.sounds.where("group").equals(group.id).sortBy("position")
 		})
 	);
 

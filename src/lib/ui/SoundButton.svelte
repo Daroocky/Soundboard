@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {mapColor} from "../../utils/colorMapper";
 
+	export let id = 0;
 	export let color = "";
 	export let isPlaying = false;
 	export let isLoading = true;
@@ -13,6 +14,7 @@
  class:isFading
  class:isLoading
  class:isPlaying
+ data-soundid={id}
  on:click|stopPropagation
  style:--color={mapColor(color)}
  style:--progress={progress+"%"}
