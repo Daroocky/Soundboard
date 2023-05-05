@@ -6,6 +6,7 @@
   "config": {
     "app": {
       "groupTitleApp": "App",
+      "language": "Sprache",
       "languages": {
         "en": "English",
         "de": "Deutsch"

@@ -63,6 +63,10 @@
 		border: 2px dashed var(--color-gray-500);
 		border-radius: var(--radius-normal);
 		background: var(--color-gray-700);
+
+		&:focus-within {
+			border-color: var(--color-primary);
+		}
 	}
 
 	.label {

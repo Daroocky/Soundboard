@@ -32,12 +32,16 @@
 
 <ConfigForm data={$data}>
 	<ConfigSection title={$t("config.app.groupTitleApp")}>
-		<ConfigDropdown bind:value={$data.language} let:option options={$locales}>
+		<ConfigDropdown bind:value={$data.language} label={$t("config.app.language")} let:option options={$locales}>
 			{$t("config.app.languages." + option.value)}
 		</ConfigDropdown>
 	</ConfigSection>
-	<ConfigSection>
+	<ConfigSection title="Groups">
 		<ConfigButton icon="add" on:click={addGroup}>{$t("config.app.addGroup")}</ConfigButton>
+	</ConfigSection>
+	<ConfigSection title="Backup">
+		<ConfigButton icon="vertical_align_top">Export</ConfigButton>
+		<ConfigButton icon="vertical_align_bottom">Import</ConfigButton>
 	</ConfigSection>
 </ConfigForm>
 
