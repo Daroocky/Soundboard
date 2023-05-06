@@ -71,6 +71,7 @@
 				 isPlaying={$editObject.type === "audio" && $editObject.id === sound.id}
 				 loop={sound.loop}
 				 on:click={() => editSound(sound.id)}
+				 waveform={sound.file.waveform}
 				>{sound.title}</SoundButton>
 			</DndZone>
 

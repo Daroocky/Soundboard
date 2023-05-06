@@ -4,6 +4,7 @@
 	import SoundButton from "./SoundButton.svelte";
 
 	export let id;
+	export let waveform;
 	export let title = "";
 	export let color = "";
 	export let blob: string;
@@ -56,4 +57,5 @@
  {loop}
  on:click={onClick}
  progress={$progress}
+ waveform={waveform}
 >{title}</SoundButton>

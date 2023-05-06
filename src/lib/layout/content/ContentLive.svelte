@@ -12,6 +12,7 @@
 
 			{#each group.sounds as sound(sound.id)}
 				<Sound
+				 waveform={sound.file.waveform}
 				 color={sound.color}
 				 id={sound.id}
 				 loop={sound.loop}

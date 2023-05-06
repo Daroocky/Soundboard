@@ -18,7 +18,8 @@ export interface Sound {
 	volume: number;
 	file: {
 		filename: string,
-		blob: string
+		blob: string,
+		waveform: string
 	}
 }
 

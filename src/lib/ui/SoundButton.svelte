@@ -3,6 +3,7 @@
 
 	export let id = 0;
 	export let color = "";
+	export let waveform = '';
 	export let isPlaying = false;
 	export let isLoading = true;
 	export let isFading = false;
@@ -20,6 +21,7 @@
  style:--progress={progress+"%"}
 >
 	<span class="progress"></span>
+	<span class="soundwave" style:background-image={`url("${waveform}")`}></span>
 	<span class="label">
 		<slot></slot>
 	</span>
@@ -44,7 +46,15 @@
 		background-color: var(--color-gray-900);
 		container-type: inline-size;
 		--progress: 0%;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 20 / 9;
+
+		.soundwave {
+			position: absolute;
+			width: 100%;
+			background-size: contain;
+			inset: 0;
+			background-blend-mode: color-burn;
+		}
 
 		&.isLoading {
 			opacity: 0.5;

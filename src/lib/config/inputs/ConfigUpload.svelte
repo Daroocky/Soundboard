@@ -1,16 +1,31 @@
 <script lang="ts">
 	import {createEventDispatcher} from "svelte";
 	import {t} from "svelte-i18n";
+	import {blobToDataUrl, generateSoundWaveImage} from "../../../utils/soundWaveRenderer";
+	import Icon from "../../ui/Icon.svelte";
 
 	const dispatch = createEventDispatcher();
 	export let label = $t("form.upload.defaultLabel");
 	export let value;
 
 	let filename = "";
+	let isLoading = false;
+	let isCanceled = false;
 
-	$: filename = value?.filename || "";
 
-	function fileSelected(e) {
+	$: {
+		filename = value?.filename || "";
+		cancelUpload();
+	}
+
+	function cancelUpload() {
+		if (isLoading) {
+			isLoading = false;
+			isCanceled = true;
+		}
+	}
+
+	async function fileSelected(e) {
 		const {files} = e.target;
 
 		if (files.length <= 0) {
@@ -19,6 +34,7 @@
 
 		const file = files[0] as File;
 
+
 		if (!file.type.startsWith("audio/")) {
 			console.warn("No Audio")
 			e.target.value = "";
@@ -26,30 +42,33 @@
 		}
 
 
+		isLoading = true;
 		filename = file.name;
 
-		const reader = new FileReader();
-		reader.addEventListener("load", data => {
-			value = {
-				filename: file.name,
-				blob: reader.result
-			}
+		const [blob, waveform] = await Promise.all([
+			blobToDataUrl(file),
+			generateSoundWaveImage(file)
+		]);
 
-			dispatch("upload", value);
-		});
-		reader.addEventListener("progress", data => {
-			console.log(data);
-		});
+		if (isCanceled) {
+			console.log("Has been Canceled");
+			isCanceled = false;
+			return;
+		}
 
-		reader.readAsDataURL(file);
+		isLoading = false;
+
+		value = {filename, blob, waveform};
+		dispatch("upload", value);
 	}
 </script>
 
 <label class="dropzone">
-	<span class="label">
-		{filename ? filename : label}
-	</span>
-	<input accept="audio/*" on:change={fileSelected} type="file">
+	{#if isLoading}
+		<span class="loading"><Icon name="sync" /></span>
+	{/if}
+	<span class="label">{filename ? filename : label}	</span>
+	<input accept="audio/*" disabled={isLoading || isCanceled} on:change={fileSelected} type="file">
 </label>
 
 <style lang="scss">
@@ -67,6 +86,10 @@
 		&:focus-within {
 			border-color: var(--color-primary);
 		}
+
+		&:has(input[disabled]) {
+			opacity: 0.5;
+		}
 	}
 
 	.label {
@@ -81,11 +104,32 @@
 		inset: 0;
 	}
 
+	@keyframes load {
+		from {
+			rotate: 0deg;
+		}
+		to {
+			rotate: -360deg
+		}
+	}
+
+	.loading {
+		font-size: 2rem;
+		line-height: 0;
+		display: block;
+		animation: load 1s linear infinite;
+		text-align: center;
+	}
+
 	input {
 		position: absolute;
 		cursor: pointer;
 		opacity: 0;
 		inset: 0;
 		appearance: none;
+
+		&[disabled] {
+			cursor: no-drop;
+		}
 	}
 </style>
