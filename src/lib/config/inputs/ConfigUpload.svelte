@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {createEventDispatcher} from "svelte";
 	import {t} from "svelte-i18n";
+	import {lockCurrentEditSelection} from "../../../stores";
 	import {blobToDataUrl, generateSoundWaveImage} from "../../../utils/soundWaveRenderer";
 	import Icon from "../../ui/Icon.svelte";
 
@@ -10,20 +11,12 @@
 
 	let filename = "";
 	let isLoading = false;
-	let isCanceled = false;
 
 
 	$: {
 		filename = value?.filename || "";
-		cancelUpload();
 	}
 
-	function cancelUpload() {
-		if (isLoading) {
-			isLoading = false;
-			isCanceled = true;
-		}
-	}
 
 	async function fileSelected(e) {
 		const {files} = e.target;
@@ -42,33 +35,31 @@
 		}
 
 
+		lockCurrentEditSelection.set(true);
 		isLoading = true;
 		filename = file.name;
+
 
 		const [blob, waveform] = await Promise.all([
 			blobToDataUrl(file),
 			generateSoundWaveImage(file)
 		]);
 
-		if (isCanceled) {
-			console.log("Has been Canceled");
-			isCanceled = false;
-			return;
-		}
-
 		isLoading = false;
+		lockCurrentEditSelection.set(false);
 
 		value = {filename, blob, waveform};
 		dispatch("upload", value);
 	}
 </script>
 
+
 <label class="dropzone">
 	{#if isLoading}
 		<span class="loading"><Icon name="sync" /></span>
 	{/if}
 	<span class="label">{filename ? filename : label}	</span>
-	<input accept="audio/*" disabled={isLoading || isCanceled} on:change={fileSelected} type="file">
+	<input accept="audio/*" disabled={isLoading} on:change={fileSelected} type="file">
 </label>
 
 <style lang="scss">

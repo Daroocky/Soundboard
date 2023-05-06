@@ -28,4 +28,25 @@ export const state = liveQuery(async () => {
 });
 
 export const editMode = writable(false);
-export const editObject = writable<{ type: string, id: number } | null>(null);
+export const lockCurrentEditSelection = writable(false);
+
+
+const editObjectStore = () => {
+	const {set, subscribe} = writable(null);
+
+	let isLocked = false;
+
+	lockCurrentEditSelection.subscribe(data => isLocked = data);
+
+	return {
+		set(data) {
+			if (!isLocked) {
+				set(data)
+			}
+		},
+		subscribe
+	}
+}
+
+
+export const editObject = editObjectStore()
