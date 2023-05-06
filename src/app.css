@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600&display=swap');
 
 :root {
   font-family: 'Chakra Petch', sans-serif;
@@ -30,17 +30,25 @@
 
 
   --color-red: hsl(0, 70%, 60%);
+  --color-accent-red: hsl(0, 46%, 24%);
   --color-orange: hsl(23, 70%, 60%);
+  --color-accent-orange: hsl(23, 46%, 24%);
   --color-yellow: hsl(55, 70%, 60%);
+  --color-accent-yellow: hsl(55, 46%, 24%);
   --color-green: hsl(105, 70%, 60%);
+  --color-accent-green: hsl(105, 46%, 24%);
   --color-turquoise: hsl(175, 70%, 60%);
+  --color-accent-turquoise: hsl(175, 46%, 24%);
   --color-blue: hsl(235, 70%, 60%);
+  --color-accent-blue: hsl(235, 46%, 24%);
   --color-purple: hsl(276, 70%, 60%);
+  --color-accent-purple: hsl(276, 46%, 24%);
   --color-pink: hsl(319, 70%, 60%);
+  --color-accent-pink: hsl(319, 46%, 24%);
 
   --weight-normal: 400;
   --weight-light: 300;
-  --weight-bold: 500;
+  --weight-bold: 600;
 
   --radius-small: 0.3rem;
   --radius-normal: 0.5rem;

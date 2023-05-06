@@ -55,7 +55,7 @@
 		<GroupElement
 		 interactable={true}
 		 on:click={() => editGroup(group.id)}
-		 selected={$editObject.type === "group" && $editObject.id === group.id}
+		 selected={$editObject && $editObject.type === "group" && $editObject.id === group.id}
 		 title={group.title}>
 
 			<DndZone
@@ -68,9 +68,10 @@
 				 color={sound.color}
 				 id={sound.id}
 				 isLoading={false}
-				 isPlaying={$editObject.type === "audio" && $editObject.id === sound.id}
+				 isPlaying={$editObject && $editObject.type === "audio" && $editObject.id === sound.id}
 				 loop={sound.loop}
 				 on:click={() => editSound(sound.id)}
+				 shortcut={sound.shortcut}
 				 waveform={sound.file.waveform}
 				>{sound.title}</SoundButton>
 			</DndZone>

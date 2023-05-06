@@ -13,10 +13,17 @@
 <style lang="scss">
 	section {
 		position: relative;
-		padding: 1rem;
 		border: 2px solid transparent;
 		border-radius: var(--radius-normal);
 		background-color: var(--color-gray-700);
+		container-type: inline-size;
+
+		padding: 0.5rem;
+
+		@media screen and (min-width: 600px) {
+			padding: 1rem;
+			width: calc(100vw - 24rem);
+		}
 
 		&.interactable {
 			cursor: pointer;
@@ -29,8 +36,12 @@
 		:global(> div) {
 			display: grid;
 			width: 100%;
-			grid-template-columns: repeat(6, 1fr);
 			gap: 10px;
+			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+			@media screen and (min-width: 600px) {
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+			}
 		}
 	}
 

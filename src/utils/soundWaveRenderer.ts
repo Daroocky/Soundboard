@@ -49,8 +49,8 @@ function drawLineSegment(ctx: OffscreenCanvasRenderingContext2D, x, y, width) {
 }
 
 async function drawSoundWave(normalizedData) {
-	const canvas = new OffscreenCanvas(300, 135);
-	const padding = canvas.height / 6;
+	const canvas = new OffscreenCanvas(400, 180);
+	const padding = canvas.height / 2;
 	const ctx = canvas.getContext("2d");
 	ctx.fillStyle = "black";
 	ctx.translate(0, canvas.height / 2); // Set Y = 0 to be in the middle of the canvas
@@ -59,7 +59,7 @@ async function drawSoundWave(normalizedData) {
 	const width = canvas.width / normalizedData.length;
 	for (let i = 0; i < normalizedData.length; i++) {
 		const x = width * i;
-		let height = normalizedData[i] * (canvas.height / 2) - padding;
+		let height = normalizedData[i] * ((canvas.height - padding) / 2);
 		height = height < 0.5 ? 0.5 : height;
 		drawLineSegment(ctx, x, height, width);
 	}

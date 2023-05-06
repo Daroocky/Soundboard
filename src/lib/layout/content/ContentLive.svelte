@@ -20,6 +20,7 @@
 				 blob={sound.file.blob}
 				 solo={sound.solo}
 				 pausable={sound.pausable}
+				 shortcut={sound.shortcut}
 				/>
 
 			{/each}

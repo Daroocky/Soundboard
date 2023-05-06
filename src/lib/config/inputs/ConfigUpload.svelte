@@ -59,7 +59,7 @@
 		<span class="loading"><Icon name="sync" /></span>
 	{/if}
 	<span class="label">{filename ? filename : label}	</span>
-	<input accept="audio/*" disabled={isLoading} on:change={fileSelected} type="file">
+	<input accept=".wav,.aif,.aiff,.flac,.alac,.aac,.ogg,.mp3" disabled={isLoading} on:change={fileSelected} type="file">
 </label>
 
 <style lang="scss">

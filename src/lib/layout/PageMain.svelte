@@ -18,6 +18,12 @@
 <style lang="scss">
 	main {
 		overflow-y: auto;
-		padding: 1rem;
+		padding: 0.5rem;
+
+		@media screen and (min-width: 600px) {
+			display: grid;
+			justify-content: center;
+			padding: 1rem;
+		}
 	}
 </style>
