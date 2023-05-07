@@ -1,4 +1,4 @@
-import './app.css'
+import './app.scss'
 import App from './App.svelte'
 import {initI18n} from "./i18n";
 

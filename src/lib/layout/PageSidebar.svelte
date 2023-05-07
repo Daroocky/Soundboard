@@ -31,17 +31,21 @@
 
 
 <style lang="scss">
+	@use "src/mixins";
+
 	aside {
 		z-index: 1;
+		display: grid;
+		overflow: hidden;
 		width: 100%;
-
 		background-color: var(--color-gray-800);
+		grid-template-rows: auto 1fr;
 
 		&.hide {
 			translate: 100% 0 !important;
 		}
 
-		@media screen and (min-width: 600px) {
+		@include mixins.responsive("small") {
 			min-width: 22rem;
 			max-width: 22rem;
 			border-left: 1px solid var(--color-gray-500);
@@ -53,6 +57,10 @@
 		justify-content: start;
 		padding: 0.5rem;
 		border-bottom: 1px solid var(--color-gray-500);
+
+		@include mixins.responsive("small") {
+			display: none;
+		}
 
 		button {
 			font-size: 1.2rem;
@@ -68,12 +76,10 @@
 			padding: 0;
 		}
 
-		@media screen and (min-width: 600px) {
-			display: none;
-		}
 	}
 
 	.content {
 		overflow-y: auto;
+		height: 100%;
 	}
 </style>

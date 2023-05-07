@@ -12,12 +12,16 @@
 </div>
 
 <style lang="scss">
+	@use "mixins";
+
 	.page {
 		display: grid;
-		overflow-x: hidden;
+		overflow: hidden;
 		height: 100vh;
+		height: -webkit-fill-available;
 		transition: all 250ms ease-in-out;
 		grid-template-columns: 1fr;
+
 		grid-template-rows: auto 1fr;
 
 		&.editMode {
@@ -40,7 +44,7 @@
 			grid-area: 2 / 1 / 3 / 1;
 		}
 
-		@media screen and (min-width: 600px) {
+		@include mixins.responsive("small") {
 			grid-template-columns: 1fr 0;
 			grid-template-rows: auto 1fr;
 

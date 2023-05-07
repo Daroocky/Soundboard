@@ -16,11 +16,13 @@
 
 
 <style lang="scss">
+	@use "src/mixins";
+
 	main {
 		overflow-y: auto;
 		padding: 0.5rem;
 
-		@media screen and (min-width: 600px) {
+		@include mixins.responsive("small") {
 			display: grid;
 			justify-content: center;
 			padding: 1rem;

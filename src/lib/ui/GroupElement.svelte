@@ -11,18 +11,20 @@
 </section>
 
 <style lang="scss">
+	@use "src/mixins";
+
 	section {
 		position: relative;
+		padding: 0.5rem;
 		border: 2px solid transparent;
 		border-radius: var(--radius-normal);
 		background-color: var(--color-gray-700);
+
 		container-type: inline-size;
 
-		padding: 0.5rem;
-
-		@media screen and (min-width: 600px) {
-			padding: 1rem;
+		@include mixins.responsive("small") {
 			width: calc(100vw - 24rem);
+			padding: 1rem;
 		}
 
 		&.interactable {
@@ -39,7 +41,7 @@
 			gap: 10px;
 			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 
-			@media screen and (min-width: 600px) {
+			@include mixins.responsive("small") {
 				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 			}
 		}
