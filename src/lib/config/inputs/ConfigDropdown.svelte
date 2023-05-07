@@ -208,7 +208,9 @@
 	.options {
 		position: absolute;
 		z-index: 10;
+		overflow: auto;
 		width: 100%;
+		max-height: 25vh;
 		margin: 0.5rem 0 0;
 		padding: 0.5rem;
 		transition: all 250ms ease-in-out;
