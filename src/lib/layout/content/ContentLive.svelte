@@ -1,10 +1,24 @@
 <script lang="ts">
+	import {shortcutTrigger} from "../../../stores";
+	import {validShortcutKey} from "../../../utils/helper";
 	import Group from "../../ui/Group.svelte";
 	import Sound from "../../ui/Sound.svelte";
 
 	export let groups;
 
+
+	function handleShortcuts({key, altKey, ctrlKey, shiftKey, metaKey}: KeyboardEvent) {
+		if (altKey || ctrlKey || shiftKey || metaKey) {
+			return
+		}
+
+		if (validShortcutKey(key)) {
+			shortcutTrigger.set(key.toUpperCase());
+		}
+	}
 </script>
+
+<svelte:body on:keydown={handleShortcuts} />
 
 <div>
 	{#each groups as group(group.id)}

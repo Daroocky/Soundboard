@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {getContext} from "svelte";
+	import {shortcutTrigger} from "../../stores";
 	import {createSoundPlayer} from "../../utils/soundPlayer";
 	import SoundButton from "./SoundButton.svelte";
 
@@ -25,6 +26,13 @@
 			if (sound.playing() && $currentlyPlaying != null && $currentlyPlaying != id) {
 				sound.fadeOut(pausable);
 			}
+		}
+	}
+
+	$: {
+		if ($shortcutTrigger === shortcut) {
+			onClick();
+			shortcutTrigger.set(null);
 		}
 	}
 

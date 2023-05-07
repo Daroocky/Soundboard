@@ -49,4 +49,6 @@ const editObjectStore = () => {
 }
 
 
-export const editObject = editObjectStore()
+export const editObject = editObjectStore();
+
+export const shortcutTrigger = writable(null);

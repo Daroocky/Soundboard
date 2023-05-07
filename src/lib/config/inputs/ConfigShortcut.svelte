@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {createEventDispatcher} from "svelte";
+	import {validShortcutKey} from "../../../utils/helper";
 	import Icon from "../../ui/Icon.svelte";
 
 	export let label = "";
@@ -10,12 +11,9 @@
 
 	function onKey(event) {
 		const {key} = event;
-		const keyCleaned = key.toUpperCase();
-		const regex = /^[A-Z0-9]{1}$/;
-		const test = regex.test(keyCleaned);
 
-		if (test) {
-			value = keyCleaned;
+		if (validShortcutKey(key)) {
+			value = key.toUpperCase();
 			dispatch("input", value);
 		}
 	}
