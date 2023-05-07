@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {mapAccentColor, mapColor} from "../../utils/colorMapper";
+	import {mapAccentColor, mapColor} from "../../utils/helper";
 	import Icon from "./Icon.svelte";
 
 	export let id = 0;

@@ -3,8 +3,8 @@
 	import {t} from "svelte-i18n";
 	import {db} from "../../../db";
 	import {editObject} from "../../../stores";
-	import {mapColor} from "../../../utils/colorMapper.js";
 	import {createConfigStore} from "../../../utils/configDataStore";
+	import {mapColor} from "../../../utils/helper";
 	import Icon from "../../ui/Icon.svelte";
 	import ConfigCheckbox from "../inputs/ConfigCheckbox.svelte";
 	import ConfigDelete from "../inputs/ConfigDelete.svelte";
