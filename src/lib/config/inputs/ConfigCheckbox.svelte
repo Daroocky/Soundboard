@@ -18,21 +18,19 @@
 
 <style lang="scss">
 	span {
-		font-size: 0.9rem;
 		display: block;
 		margin-bottom: 0;
-		color: var(--color-gray-400);
+		color: var(--color-gray-100);
 	}
 
 	label {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		line-height: normal;
 		display: flex;
 		align-items: center;
 		width: 100%;
 		padding: 0.5rem;
 		cursor: pointer;
-		color: white;
 		border: 2px solid var(--color-gray-500);
 		border-radius: var(--radius-normal);
 		background: var(--color-gray-500);

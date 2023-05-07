@@ -5,29 +5,47 @@
 	import {editObject} from "../../../stores";
 	import {mapColor} from "../../../utils/colorMapper.js";
 	import {createConfigStore} from "../../../utils/configDataStore";
+	import Icon from "../../ui/Icon.svelte";
 	import ConfigCheckbox from "../inputs/ConfigCheckbox.svelte";
 	import ConfigDelete from "../inputs/ConfigDelete.svelte";
 	import ConfigDropdown from "../inputs/ConfigDropdown.svelte";
 	import ConfigForm from "../inputs/ConfigForm.svelte";
 	import ConfigInput from "../inputs/ConfigInput.svelte";
 	import ConfigSection from "../inputs/ConfigSection.svelte";
+	import ConfigShortcut from "../inputs/ConfigShortcut.svelte";
 	import ConfigUpload from "../inputs/ConfigUpload.svelte";
 
 	export let id: number;
+
+	let duplicateShortcutTitle = "";
 
 	const {data, reloadData, onDataChanged} = createConfigStore(() => {
 		return db.sounds.where("id").equals(id).first();
 	});
 
-	$: reloadData(id)
+	$: {
+		reloadData(id).then(data => {
+			checkShortcuts({detail: data.shortcut})
+		})
+	}
 
-	onDataChanged(newData => db.sounds.update(id, newData));
-
+	onDataChanged(async newData => db.sounds.update(id, newData));
 
 	const colors = ["red", "orange", "yellow", "green", "turquoise", "blue", "purple", "pink"];
 
-	const shortcuts = ["", "Q", "W", "E", "R", "T", "Y"]
+	async function checkShortcuts({detail}) {
+		if (detail) {
+			const hasOther = await db.sounds.where("shortcut").equals(detail).filter(sound => sound.id != id);
 
+			if (await hasOther.count() > 0) {
+				const {title} = await hasOther.first();
+				duplicateShortcutTitle = title;
+				return
+			}
+		}
+
+		duplicateShortcutTitle = "";
+	}
 
 	async function removeAudio() {
 		db.sounds.delete(id);
@@ -56,7 +74,14 @@
 				<span>{$t("config.sound.colors." + option.value)}</span>
 			</span>
 		</ConfigDropdown>
-		<ConfigDropdown bind:value={$data.shortcut} label={$t("config.sound.shortcut")} options={shortcuts} />
+		<ConfigShortcut bind:value={$data.shortcut} label={$t("config.sound.shortcut")} on:input={checkShortcuts} />
+
+		{#if duplicateShortcutTitle}
+			<div class="shortcutInfo">
+				<Icon name="info" />
+				This shortcut is already in use by "{duplicateShortcutTitle}".
+			</div>
+		{/if}
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitlePlayback")}>
 		<ConfigCheckbox bind:value={$data.loop} label={$t("config.sound.loop")} />
@@ -84,5 +109,15 @@
     border-radius: var(--radius-small);
     background-color: var(--color, white);
     aspect-ratio: 1/1;
+  }
+
+  .shortcutInfo {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-small);
+    background-color: var(--color-accent-orange);
+    gap: 0.3rem;
   }
 </style>

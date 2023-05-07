@@ -1,5 +1,5 @@
 import {Howl, type HowlOptions} from "howler";
-import {onDestroy} from "svelte";
+import {onDestroy, onMount} from "svelte";
 import {writable} from "svelte/store";
 
 export const createSoundPlayer = (config: HowlOptions) => {
@@ -8,7 +8,7 @@ export const createSoundPlayer = (config: HowlOptions) => {
 	const isFading = writable(false);
 	const isLoading = writable(true);
 
-	const sound = new Howl(config);
+	const sound = new Howl({...config, preload: false});
 
 	const seek = () => {
 		progress.set(sound.seek() / sound.duration() * 100);
@@ -72,11 +72,14 @@ export const createSoundPlayer = (config: HowlOptions) => {
 	sound.on("end", onEnd)
 	sound.on("load", onLoad);
 
+	onMount(() => {
+		sound.load();
+	})
+
 	onDestroy(() => {
+		sound.unload();
 		sound.stop();
 		sound.off();
-		sound.unload();
-
 	})
 
 	return {

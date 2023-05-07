@@ -64,7 +64,7 @@
 
 <style lang="scss">
 	.dropzone {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		position: relative;
 		width: 100%;
 		height: 8rem;
@@ -84,7 +84,7 @@
 	}
 
 	.label {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		position: absolute;
 		display: flex;
 		align-items: center;

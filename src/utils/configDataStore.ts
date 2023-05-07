@@ -10,15 +10,15 @@ export const createConfigStore = (loadDataCallback) => {
 	let dataChangeCallback;
 	let storeUnsubscriber;
 
-	const loadData = () => {
-		loadDataCallback().then(newData => {
-			data.set(newData);
-		})
+	const loadData = async () => {
+		const newData = await loadDataCallback()
+		data.set(newData);
+		return newData;
 	}
 
-	const reloadData = (id) => {
+	const reloadData = async (id) => {
 		oldData = null;
-		loadData();
+		return await loadData();
 	}
 
 	const onDataChanged = (callback) => {

@@ -1,3 +1,5 @@
+@import "normalize.css";
+
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600&display=swap");
 
 :root {
@@ -16,9 +18,9 @@
 	-webkit-text-size-adjust: 100%;
 
 	--color-gray-100: hsl(0, 0%, 90%);
-	--color-gray-200: hsl(0, 0%, 86%);
-	--color-gray-300: hsl(0, 0%, 82%);
-	--color-gray-400: hsl(0, 0%, 78%);
+	--color-gray-200: hsl(0, 0%, 82%);
+	--color-gray-300: hsl(0, 0%, 74%);
+	--color-gray-400: hsl(0, 0%, 66%);
 	--color-gray-500: hsl(0, 0%, 26%);
 	--color-gray-600: hsl(0, 0%, 22%);
 	--color-gray-700: hsl(0, 0%, 18%);
@@ -65,7 +67,6 @@ html, body, #app {
 
 body {
 	overflow: hidden;
-	margin: 0;
 }
 
 /*

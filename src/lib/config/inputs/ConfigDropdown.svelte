@@ -171,7 +171,7 @@
 	}
 
 	button {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -224,7 +224,7 @@
 	}
 
 	.option {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;

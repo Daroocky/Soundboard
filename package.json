@@ -23,6 +23,7 @@
     "@types/sortablejs": "^1.15.1",
     "dexie": "^4.0.1-alpha.10",
     "howler": "^2.2.3",
+    "normalize.css": "^8.0.1",
     "radash": "^10.8.1",
     "sortablejs": "^1.15.0",
     "svelte-i18n": "^3.6.0"

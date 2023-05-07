@@ -131,7 +131,7 @@
 	}
 
 	.label {
-		font-size: 8cqmin;
+		font-size: 7cqmin;
 		line-height: 1;
 		overflow: hidden;
 		white-space: nowrap;

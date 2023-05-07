@@ -19,7 +19,7 @@
 	}
 
 	input {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		width: 100%;
 		padding: 0.5rem;
 		color: var(--color-gray-100);
