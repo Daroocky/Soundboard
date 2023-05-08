@@ -8,6 +8,7 @@
 	import ConfigForm from "../inputs/ConfigForm.svelte";
 	import ConfigInput from "../inputs/ConfigInput.svelte";
 	import ConfigSection from "../inputs/ConfigSection.svelte";
+	import ConfigVolume from "../inputs/ConfigVolume.svelte";
 
 	export let id: number;
 
@@ -36,7 +37,7 @@
 			position: Date.now(),
 			color: "",
 			group: id,
-			file: {blob: "", filename: ""},
+			file: {blob: "", filename: "", waveform: ""},
 			loop: false,
 			pausable: false,
 			shortcut: "",
@@ -56,6 +57,7 @@
 <ConfigForm data={$data}>
 	<ConfigSection>
 		<ConfigInput bind:value={$data.title} label={$t("config.group.title")} />
+		<ConfigVolume bind:value={$data.volume} label="Volume" />
 	</ConfigSection>
 	<ConfigSection>
 		<ConfigButton icon="add" on:click={addSound}>{$t("config.group.addSound")}</ConfigButton>

@@ -67,5 +67,6 @@
  on:click={onClick}
  progress={$progress}
  {shortcut}
+ {solo}
  {waveform}
 >{title}</SoundButton>

@@ -29,6 +29,7 @@
 		display: flex;
 		align-items: center;
 		width: 100%;
+		height: 2.4rem;
 		padding: 0.5rem;
 		cursor: pointer;
 		border: 2px solid var(--color-gray-500);

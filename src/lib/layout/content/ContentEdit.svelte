@@ -72,6 +72,7 @@
 				 loop={sound.loop}
 				 on:click={() => editSound(sound.id)}
 				 shortcut={sound.shortcut}
+				 solo={sound.solo}
 				 waveform={sound.file.waveform}
 				>{sound.title}</SoundButton>
 			</DndZone>

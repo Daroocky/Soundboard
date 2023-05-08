@@ -14,6 +14,7 @@
 	import ConfigSection from "../inputs/ConfigSection.svelte";
 	import ConfigShortcut from "../inputs/ConfigShortcut.svelte";
 	import ConfigUpload from "../inputs/ConfigUpload.svelte";
+	import ConfigVolume from "../inputs/ConfigVolume.svelte";
 
 	export let id: number;
 
@@ -84,6 +85,7 @@
 		{/if}
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitlePlayback")}>
+		<ConfigVolume bind:value={$data.volume} label="Volume" />
 		<ConfigCheckbox bind:value={$data.loop} label={$t("config.sound.loop")} />
 		<ConfigCheckbox bind:value={$data.solo} label={$t("config.sound.solo")} />
 		<ConfigCheckbox bind:value={$data.pausable} label={$t("config.sound.pausable")} />

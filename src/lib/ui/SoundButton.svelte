@@ -11,6 +11,7 @@
 	export let isFading = false;
 	export let progress = 0;
 	export let loop = false;
+	export let solo = false;
 </script>
 
 <button
@@ -32,11 +33,10 @@
 		{#if shortcut}
 			<span class="shortcut">{shortcut}</span>
 		{/if}
-		{#if loop}
-			<span class="settings">
-				<Icon name="laps" />
-			</span>
-		{/if}
+		<span class="settings">
+			{#if loop}<Icon name="laps" />{/if}
+			{#if solo}<Icon name="adjust" />{/if}
+		</span>
 	</span>
 
 </button>
@@ -128,6 +128,7 @@
 		justify-content: start;
 		color: var(--color, var(--color-primary));
 		mix-blend-mode: difference;
+		gap: 1cqmin;
 	}
 
 	.label {

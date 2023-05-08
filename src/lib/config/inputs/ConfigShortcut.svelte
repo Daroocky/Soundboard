@@ -59,6 +59,7 @@
 
 	.shortcutInput {
 		display: flex;
+		height: 2.4rem;
 		gap: 0.2rem;
 	}
 
