@@ -5,6 +5,8 @@
 	import {editMode} from "./stores";
 </script>
 
+<!--<div class="aura"></div>-->
+
 <div class="page" class:editMode={$editMode}>
 	<PageHeader />
 	<PageMain />
@@ -14,12 +16,47 @@
 <style lang="scss">
 	@use "mixins";
 
+	@keyframes aura {
+		from {
+			rotate: 0deg;
+		}
+
+		50% {
+			scale: 1.4;
+		}
+
+		to {
+			rotate: 360deg;
+		}
+	}
+
+	.aura {
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		left: 50%;
+		width: max(75vw, 75vh);
+		animation: aura 80s linear infinite;
+		opacity: 0.2;
+		border-radius: 50%;
+		background-image: linear-gradient(140deg, transparent, var(--color-purple));
+		//background-image: linear-gradient(140deg, var(--color-red), var(--color-green));
+		aspect-ratio: 3 / 2;
+
+		translate: -50% 0;
+	}
+
 	.page {
+		position: relative;
+		z-index: 1;
 		display: grid;
 		overflow: hidden;
 		height: 100vh;
 		height: -webkit-fill-available;
 		transition: all 250ms ease-in-out;
+		//background-color: hsl(0, 0%, 14%, 0.7);
+		-webkit-backdrop-filter: blur(50px);
+		backdrop-filter: blur(50px);
 		grid-template-columns: 1fr;
 
 		grid-template-rows: auto 1fr;

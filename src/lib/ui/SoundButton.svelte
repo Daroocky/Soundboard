@@ -42,11 +42,32 @@
 </button>
 
 <style lang="scss">
+	@property --color {
+		syntax: "<color>";
+		inherits: false;
+	}
+
+	@property --color-accent {
+		syntax: "<color>";
+		inherits: false;
+	}
+
+	@keyframes fadingPuls {
+		from, to {
+			border-color: var(--color);
+		}
+
+		50% {
+			border-color: var(--color-accent);
+		}
+	}
+
 	button {
 		position: relative;
 
+		overflow: hidden;
 		cursor: pointer;
-		transition: opacity 500ms ease-in-out;
+		transition: opacity 500ms ease-in-out, border-color 250ms ease-in-out;
 		color: var(--color-gray-100);
 		border: 2px solid transparent;
 		border-radius: 8px;
@@ -63,6 +84,10 @@
 			border-color: var(--color, var(--color-primary));
 		}
 
+		&.isFading {
+			animation: fadingPuls 1s linear infinite;
+			//border-color: var(--color-accent, var(--color-accent-purple));
+		}
 	}
 
 	.progress {

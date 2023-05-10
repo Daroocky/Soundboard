@@ -29,7 +29,7 @@ export const createSoundPlayer = (config: HowlOptions) => {
 			sound.volume(1);
 		})
 
-		sound.fade(1, 0, 3000);
+		sound.fade(1, 0, 2000);
 	}
 
 	const fadeIn = () => {
@@ -40,7 +40,7 @@ export const createSoundPlayer = (config: HowlOptions) => {
 		})
 
 		sound.play();
-		sound.fade(0, 1, 3000);
+		sound.fade(0, 1, 2000);
 	}
 
 	const onPlay = () => {

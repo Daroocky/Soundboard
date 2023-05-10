@@ -42,7 +42,7 @@
 			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 
 			@include mixins.responsive("small") {
-				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 			}
 		}
 	}
