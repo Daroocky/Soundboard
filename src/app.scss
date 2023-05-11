@@ -28,6 +28,7 @@
 	--color-gray-900: hsl(0, 0%, 10%);
 
 	--color-primary: var(--color-purple);
+	--color-accent-primary: var(--color-accent-purple);
 
 	--color-red: hsl(0, 70%, 60%);
 	--color-accent-red: hsl(0, 46%, 24%);
@@ -61,8 +62,7 @@
 }
 
 html, body, #app {
-	height: 100vh;
-	height: -webkit-fill-available;
+	height: 100dvh;
 }
 
 body {

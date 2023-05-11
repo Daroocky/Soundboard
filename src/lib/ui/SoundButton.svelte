@@ -67,7 +67,7 @@
 
 		overflow: hidden;
 		cursor: pointer;
-		transition: opacity 500ms ease-in-out, border-color 250ms ease-in-out;
+		transition: opacity 500ms ease-in-out, border-color 250ms ease-in-out, scale 250ms ease-in-out;
 		color: var(--color-gray-100);
 		border: 2px solid transparent;
 		border-radius: 8px;
@@ -75,6 +75,7 @@
 		container-type: inline-size;
 		--progress: 0%;
 		aspect-ratio: 20 / 9;
+		scale: 0.95;
 
 		&.isLoading {
 			opacity: 0.5;
@@ -82,10 +83,12 @@
 
 		&.isPlaying {
 			border-color: var(--color, var(--color-primary));
+			scale: 1;
 		}
 
 		&.isFading {
 			animation: fadingPuls 1s linear infinite;
+			scale: 0.975;
 			//border-color: var(--color-accent, var(--color-accent-purple));
 		}
 	}

@@ -13,6 +13,7 @@
 	export let loop = false;
 	export let solo = false;
 	export let pausable = false;
+	export let volume = {sound: 100, group: 100};
 
 	const {currentlyPlaying} = getContext("group");
 
@@ -20,6 +21,8 @@
 		src: [blob],
 		loop
 	});
+
+	$: setVolume(volume);
 
 	$: {
 		if (sound) {
@@ -36,6 +39,10 @@
 		}
 	}
 
+	function setVolume(vol) {
+		const newVolume = (vol.sound / 100) * (vol.group / 100);
+		sound.volume(newVolume);
+	}
 
 	function onClick() {
 		if (sound.playing()) {

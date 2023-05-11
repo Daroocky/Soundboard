@@ -92,6 +92,7 @@ export const createSoundPlayer = (config: HowlOptions) => {
 			pause: () => sound.pause(),
 			playing: () => sound.playing(),
 			stop: () => sound.stop(),
+			volume: (vol) => sound.volume(vol),
 			fadeIn,
 			fadeOut
 		}

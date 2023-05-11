@@ -33,6 +33,7 @@
 				 title={sound.title}
 				 blob={sound.file.blob}
 				 solo={sound.solo}
+				 volume={{sound: sound.volume, group: group.volume}}
 				 pausable={sound.pausable}
 				 shortcut={sound.shortcut}
 				/>
