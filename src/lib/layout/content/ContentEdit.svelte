@@ -71,6 +71,7 @@
 				 isPlaying={$editObject && $editObject.type === "audio" && $editObject.id === sound.id}
 				 loop={sound.loop}
 				 on:click={() => editSound(sound.id)}
+				 pausable={sound.pausable}
 				 shortcut={sound.shortcut}
 				 solo={sound.solo}
 				 waveform={sound.file.waveform}

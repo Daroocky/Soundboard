@@ -72,6 +72,7 @@
  isPlaying={$isPlaying}
  {loop}
  on:click={onClick}
+ {pausable}
  progress={$progress}
  {shortcut}
  {solo}

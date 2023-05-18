@@ -12,6 +12,7 @@
 	export let progress = 0;
 	export let loop = false;
 	export let solo = false;
+	export let pausable = false;
 </script>
 
 <button
@@ -36,6 +37,7 @@
 		<span class="settings">
 			{#if loop}<Icon name="laps" />{/if}
 			{#if solo}<Icon name="adjust" />{/if}
+			{#if pausable}<Icon name="autopause" />{/if}
 		</span>
 	</span>
 
