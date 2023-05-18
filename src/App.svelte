@@ -36,10 +36,10 @@
 		top: 0;
 		left: 50%;
 		width: max(75vw, 75vh);
-		animation: aura 80s linear infinite;
+		animation: aura 120s linear infinite;
 		opacity: 0.2;
 		border-radius: 50%;
-		background-image: linear-gradient(140deg, transparent, var(--color-purple));
+		background-image: linear-gradient(140deg, var(--color-turquoise), var(--color-purple));
 		//background-image: linear-gradient(140deg, var(--color-red), var(--color-green));
 		aspect-ratio: 3 / 2;
 
@@ -51,8 +51,7 @@
 		z-index: 1;
 		display: grid;
 		overflow: hidden;
-		height: 100vh;
-		height: -webkit-fill-available;
+		height: 100dvh;
 		transition: all 250ms ease-in-out;
 		//background-color: hsl(0, 0%, 14%, 0.7);
 		-webkit-backdrop-filter: blur(50px);

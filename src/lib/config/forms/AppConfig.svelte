@@ -4,7 +4,6 @@
 	import {editObject, state} from "../../../stores";
 	import {createConfigStore} from "../../../utils/configDataStore";
 	import ConfigButton from "../inputs/ConfigButton.svelte";
-	import ConfigDelete from "../inputs/ConfigDelete.svelte";
 	import ConfigDropdown from "../inputs/ConfigDropdown.svelte";
 	import ConfigForm from "../inputs/ConfigForm.svelte";
 	import ConfigSection from "../inputs/ConfigSection.svelte";
@@ -39,13 +38,6 @@
 	</ConfigSection>
 	<ConfigSection title="Groups">
 		<ConfigButton icon="add" on:click={addGroup}>{$t("config.app.addGroup")}</ConfigButton>
-	</ConfigSection>
-	<ConfigSection title="Backup">
-		<ConfigButton icon="vertical_align_top">Export</ConfigButton>
-		<ConfigButton icon="vertical_align_bottom">Import</ConfigButton>
-	</ConfigSection>
-	<ConfigSection title="Danger zone">
-		<ConfigDelete>Delete all data</ConfigDelete>
 	</ConfigSection>
 </ConfigForm>
 

@@ -6,7 +6,7 @@
 
 	export let id;
 	export let waveform;
-	export let shortcut;
+	export let shortcut = "";
 	export let title = "";
 	export let color = "";
 	export let blob: string;
@@ -67,6 +67,7 @@
 
 <SoundButton
  {color}
+ {id}
  isFading={$isFading}
  isLoading={$isLoading}
  isPlaying={$isPlaying}

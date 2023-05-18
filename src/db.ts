@@ -38,7 +38,7 @@ export class Database extends Dexie {
 
 	constructor() {
 		super('soundboard');
-		this.version(2).stores({
+		this.version(1).stores({
 			app: "++id",
 			sounds: '++id, title, group, position, shortcut',
 			groups: "++id, title, position"

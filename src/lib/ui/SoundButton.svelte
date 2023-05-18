@@ -79,6 +79,10 @@
 		aspect-ratio: 20 / 9;
 		scale: 0.95;
 
+		&[data-soundid="demo"] {
+			scale: 1;
+		}
+
 		&.isLoading {
 			opacity: 0.5;
 		}
