@@ -1,41 +1,30 @@
 <script>
     import Sound from "../../ui/Sound.svelte";
     import {setContext} from "svelte";
-    import Icon from "../../ui/Icon.svelte";
+    import Card from "../../ui/intro/Card.svelte";
+    import {fly} from "svelte/transition";
+
+    export let groups; //To hide the warning
 
     setContext("group", "demo");
 </script>
 
-<section class="grid">
+<section class="grid" transition:fly={{ x: -352 }}>
 	<div class="box welcome">
 		<h1>Welcome to your soundboard</h1>
 	</div>
 
-	<div class="stat">
-		<div class="card">
-			<div class="face front">
-				<Icon name="account_circle" />
-				<span>No account</span>
-			</div>
-			<div class="face back">
-				<p>You don't have to create a account. Just click on "Edit" and start creating your soundboard.</p>
-			</div>
-		</div>
-	</div>
+	<Card icon="account_circle" title="No account">
+		<p>You don't have to create a account. Just click on "Edit" and start creating your soundboard.</p>
+	</Card>
 
-	<div class="stat">
-		<div class="card">
-			<div class="face front">
-				<Icon name="save" />
-				<span>All local</span>
-			</div>
-			<div class="face back">
-				<p>All files and settings are stored locally on your device.</p>
-			</div>
-		</div>
-	</div>
 
-	<div class="box">
+	<Card icon="save" title="All local">
+		<p>All files and settings are stored locally on your device.</p>
+	</Card>
+
+
+	<div class="box info">
 		<p>Create your own custom soundboard directly in your browser.</p>
 		<ul>
 			<li>Create groups to organise your sounds</li>
@@ -51,17 +40,11 @@
 	 waveform=""
 	/>
 
-	<div class="stat">
-		<div class="card">
-			<div class="face front">
-				<Icon name="payments" />
-				<span>It's free</span>
-			</div>
-			<div class="face back">
-				<p>This tool is completely free. But if you like you can support our work here.</p>
-			</div>
-		</div>
-	</div>
+	<Card icon="payments" title="It's free">
+		<p>This tool is completely free. But if you like you can support our work here.</p>
+	</Card>
+
+
 </section>
 
 <style lang="scss">
@@ -116,54 +99,13 @@
 		}
 	}
 
-	.stat {
-		perspective: 600px;
+	.info {
+		font-size: 1.2rem;
+		padding: 2rem;
 
-		.card {
-			position: relative;
-			width: 100%;
-			height: 100%;
-			transition: transform 1s;
-			transform-style: preserve-3d;
-
-			&:hover {
-				transform: rotateY(180deg);
-			}
+		p {
+			margin: 0;
 		}
-
-		.face {
-			position: absolute;
-			border-radius: var(--radius-normal);
-			inset: 0;
-			backface-visibility: hidden;
-		}
-
-		.front {
-			font-size: 3rem;
-			display: flex;
-			align-items: center;
-
-			flex-direction: column;
-			justify-content: center;
-			background-color: var(--color-gray-900);
-
-			gap: 0.5rem;
-
-			span {
-				font-size: 2rem;
-			}
-		}
-
-		.back {
-			transform: rotateY(180deg);
-			background-color: var(--color-accent-purple);
-
-			p {
-				font-size: 1rem;
-				margin: 0;
-				padding: 1rem;
-			}
-		}
-
 	}
+
 </style>
