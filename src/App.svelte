@@ -5,46 +5,25 @@
 	import {editMode} from "./stores";
 </script>
 
-<!--<div class="aura"></div>-->
 
 <div class="page" class:editMode={$editMode}>
 	<PageHeader />
 	<PageMain />
 	<PageSidebar />
+
 </div>
+
+<footer>
+	<ul>
+		<li>&copy; Stefan Roock</li>
+		<li><a href="#">Imprint</a></li>
+		<li><a href="#">Buy me a coffee</a></li>
+	</ul>
+</footer>
+
 
 <style lang="scss">
 	@use "mixins";
-
-	@keyframes aura {
-		from {
-			rotate: 0deg;
-		}
-
-		50% {
-			scale: 1.4;
-		}
-
-		to {
-			rotate: 360deg;
-		}
-	}
-
-	.aura {
-		position: absolute;
-		z-index: 0;
-		top: 0;
-		left: 50%;
-		width: max(75vw, 75vh);
-		animation: aura 120s linear infinite;
-		opacity: 0.2;
-		border-radius: 50%;
-		background-image: linear-gradient(140deg, var(--color-turquoise), var(--color-purple));
-		//background-image: linear-gradient(140deg, var(--color-red), var(--color-green));
-		aspect-ratio: 3 / 2;
-
-		translate: -50% 0;
-	}
 
 	.page {
 		position: relative;
@@ -53,9 +32,6 @@
 		overflow: hidden;
 		height: 100dvh;
 		transition: all 250ms ease-in-out;
-		//background-color: hsl(0, 0%, 14%, 0.7);
-		-webkit-backdrop-filter: blur(50px);
-		backdrop-filter: blur(50px);
 		grid-template-columns: 1fr;
 
 		grid-template-rows: auto 1fr;
@@ -99,6 +75,31 @@
 			:global(aside) {
 				grid-area: 2 / 2 / 3 / 3;
 			}
+		}
+	}
+
+	footer {
+		position: absolute;
+		z-index: 100;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: 0.5rem 1rem;
+		color: var(--color-gray-400);
+
+		ul {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			gap: 1rem;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		a {
+			color: inherit;
 		}
 	}
 </style>
