@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {createEventDispatcher} from "svelte";
-	import {clickOutside} from "../../../utils/clickOutside";
+	import { createEventDispatcher } from "svelte";
+	import { clickOutside } from "../../../utils/clickOutside";
 	import Icon from "../../ui/Icon.svelte";
 
 	type Option = { value: string } & { [name: string]: unknown };
@@ -8,37 +8,38 @@
 	const dispatch = createEventDispatcher();
 	export let label = "";
 	export let value = "";
-	export let options: Option[] = [];
+	export let options: Option[] | string[] = [];
 
+	let _options: Option[] = [];
 	let open = false;
 	let currentOption: Option;
 	let currentFocus;
 
 	$: {
-		options = options.map(option => {
+		_options = options.map((option) => {
 			if (typeof option !== "object") {
 				return {
-					value: option
-				}
+					value: option,
+				};
 			}
 
 			return option;
-		})
+		});
 	}
 
 	$: {
-		currentOption = options.find(option => option.value == value);
+		currentOption = _options.find((option) => option.value == value);
 
 		if (!currentOption) {
-			value = options[0].value;
-			currentOption = options.find(option => option.value == value);
+			value = _options[0].value;
+			currentOption = _options.find((option) => option.value == value);
 		}
 	}
 
 	function selectOption(option: Option) {
 		value = option.value;
 		open = false;
-		dispatch("input", option)
+		dispatch("input", option);
 	}
 
 	enum Actions {
@@ -46,12 +47,12 @@
 		Close,
 		Next,
 		Previous,
-		SelectOption
+		SelectOption,
 	}
 
 	function getKeyboardAction(key: string) {
 		if (key == "Tab") {
-			return Actions.Close
+			return Actions.Close;
 		}
 
 		if (open) {
@@ -60,11 +61,11 @@
 			}
 
 			if (key === "ArrowDown") {
-				return Actions.Next
+				return Actions.Next;
 			}
 
 			if (key === "ArrowUp") {
-				return Actions.Previous
+				return Actions.Previous;
 			}
 
 			if (key === "Enter" || key === " ") {
@@ -90,7 +91,7 @@
 
 		if (action == Actions.Open) {
 			open = true;
-			currentFocus = options.findIndex(option => value == option.value);
+			currentFocus = options.findIndex((option) => value == option.value);
 		}
 
 		if (action == Actions.Next) {
@@ -114,45 +115,50 @@
 		}
 
 		if (action == Actions.SelectOption) {
-			selectOption(options[currentFocus]);
+			selectOption(_options[currentFocus]);
 		}
 	}
 </script>
 
-<div class="dropdown" on:click_outside={() => open = false} on:keydown={handleKeyboard} use:clickOutside>
-	<label on:click|preventDefault={() => open = !open}>
+<div
+	class="dropdown"
+	on:click_outside={() => (open = false)}
+	on:keydown={handleKeyboard}
+	use:clickOutside
+>
+	<label on:click|preventDefault={() => (open = !open)}>
 		<span class="label">{label}</span>
 
 		<select bind:value>
-			{#each options as option (option.value)}
+			{#each _options as option (option.value)}
 				<option value={option.value}>{option.value}</option>
 			{/each}
 		</select>
 	</label>
 
-	<button aria-expanded={open} on:click={() => open = !open} role="combobox">
+	<button aria-expanded={open} on:click={() => (open = !open)} role="combobox">
 		<span>
 			{#if currentOption}
-			<slot option="{currentOption}">{currentOption.value}</slot>
+				<slot option={currentOption}>{currentOption.value}</slot>
 			{/if}
 		</span>
 		<Icon name="expand_more" />
 	</button>
 	<ul class="options" class:open role="listbox">
-		{#each options as option, i (option.value)}
+		{#each _options as option, i (option.value)}
 			<li
-			 class="option"
-			 class:selected={i === currentFocus}
-			 role="option"
-			 aria-selected={value == option.value}
-			 on:click={() => selectOption(option)}>
+				class="option"
+				class:selected={i === currentFocus}
+				role="option"
+				aria-selected={value == option.value}
+				on:click={() => selectOption(option)}
+			>
 				<span><slot {option}>{option.value}</slot></span>
 				<Icon name="check" />
 			</li>
 		{/each}
 	</ul>
 </div>
-
 
 <style lang="scss">
 	select {
@@ -180,7 +186,7 @@
 		cursor: pointer;
 		color: var(--color-gray-100);
 		border: 2px solid var(--color-gray-500);
-		border-radius: 5px;
+		border-radius: var(--radius-normal);
 		background: var(--color-gray-500);
 
 		:global(.icon) {
@@ -237,7 +243,8 @@
 			display: none;
 		}
 
-		&:hover, &.selected {
+		&:hover,
+		&.selected {
 			background: var(--color-gray-600);
 		}
 

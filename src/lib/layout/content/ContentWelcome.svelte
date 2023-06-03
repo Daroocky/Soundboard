@@ -1,12 +1,12 @@
-<script>
-    import Sound from "../../ui/Sound.svelte";
-    import {setContext} from "svelte";
-    import Card from "../../ui/intro/Card.svelte";
-    import {fly} from "svelte/transition";
+<script lang="ts">
+	import Sound from "../../ui/Sound.svelte";
+	import { setContext } from "svelte";
+	import Card from "../../ui/intro/Card.svelte";
+	import { fly } from "svelte/transition";
 
-    export let groups; //To hide the warning
+	export const groups = []; //To hide the warning
 
-    setContext("group", "demo");
+	setContext("group", "demo");
 </script>
 
 <section class="grid" transition:fly={{ x: -352 }}>
@@ -15,14 +15,14 @@
 	</div>
 
 	<Card icon="account_circle" title="No account">
-		<p>You don't have to create a account. Just click on "Edit" and start creating your soundboard.</p>
+		<p>
+			You don't have to create a account. Just click on "Edit" and start creating your soundboard.
+		</p>
 	</Card>
-
 
 	<Card icon="save" title="All local">
 		<p>All files and settings are stored locally on your device.</p>
 	</Card>
-
 
 	<div class="box info">
 		<p>Create your own custom soundboard directly in your browser.</p>
@@ -33,18 +33,11 @@
 		</ul>
 	</div>
 
-	<Sound
-	 blob="src/assets/sound.mp3"
-	 id="demo"
-	 title="Intro Sound"
-	 waveform=""
-	/>
+	<Sound blob="src/assets/sound.mp3" id="demo" title="Intro Sound" waveform="" />
 
 	<Card icon="payments" title="It's free">
 		<p>This tool is completely free. But if you like you can support our work here.</p>
 	</Card>
-
-
 </section>
 
 <style lang="scss">
@@ -55,9 +48,9 @@
 		grid-template-rows: repeat(3, 1fr);
 		gap: 1rem;
 		grid-template-areas:
-    "welcome welcome welcome info1 info2"
-    "welcome welcome welcome info info"
-    "info3 sound sound info info";
+			"welcome welcome welcome info1 info2"
+			"welcome welcome welcome info info"
+			"info3 sound sound info info";
 
 		:nth-child(1) {
 			grid-area: welcome;
@@ -107,5 +100,4 @@
 			margin: 0;
 		}
 	}
-
 </style>

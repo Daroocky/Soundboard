@@ -1,8 +1,9 @@
 <script lang="ts">
-	import {getContext} from "svelte";
-	import {shortcutTrigger} from "../../stores";
-	import {createSoundPlayer} from "../../utils/soundPlayer";
+	import { getContext } from "svelte";
+	import { shortcutTrigger } from "../../stores";
+	import { createSoundPlayer } from "../../utils/soundPlayer";
 	import SoundButton from "./SoundButton.svelte";
+	import type { IGroupContext } from "../interfaces/interfaces";
 
 	export let id;
 	export let waveform;
@@ -12,14 +13,14 @@
 	export let blob: string;
 	export let loop = false;
 	export let solo = false;
-	export let pausable = false;
-	export let volume = {sound: 100, group: 100};
+	export let pauseable = false;
+	export let volume = { sound: 100, group: 100 };
 
-	const {currentlyPlaying} = getContext("group");
+	const { currentlyPlaying } = getContext<IGroupContext>("group");
 
-	const {isLoading, isFading, isPlaying, progress, sound} = createSoundPlayer({
+	const { isLoading, isFading, isPlaying, progress, sound } = createSoundPlayer({
 		src: [blob],
-		loop
+		loop,
 	});
 
 	$: setVolume(volume);
@@ -27,7 +28,7 @@
 	$: {
 		if (sound) {
 			if (sound.playing() && $currentlyPlaying != null && $currentlyPlaying != id) {
-				sound.fadeOut(pausable);
+				sound.fadeOut(pauseable);
 			}
 		}
 	}
@@ -46,7 +47,7 @@
 
 	function onClick() {
 		if (sound.playing()) {
-			pausable ? sound.pause() : sound.stop();
+			pauseable ? sound.pause() : sound.stop();
 
 			if (solo && $currentlyPlaying == id) {
 				currentlyPlaying.set(null);
@@ -66,16 +67,16 @@
 </script>
 
 <SoundButton
- {color}
- {id}
- isFading={$isFading}
- isLoading={$isLoading}
- isPlaying={$isPlaying}
- {loop}
- on:click={onClick}
- {pausable}
- progress={$progress}
- {shortcut}
- {solo}
- {waveform}
->{title}</SoundButton>
+	{color}
+	{id}
+	isFading={$isFading}
+	isLoading={$isLoading}
+	isPlaying={$isPlaying}
+	{loop}
+	on:click={onClick}
+	{pauseable}
+	progress={$progress}
+	{shortcut}
+	{solo}
+	{waveform}>{title}</SoundButton
+>

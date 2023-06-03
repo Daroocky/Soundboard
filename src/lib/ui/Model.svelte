@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {onMount} from "svelte";
-	import {scale} from "svelte/transition";
+	import { onMount } from "svelte";
+	import { scale } from "svelte/transition";
 
 	export let title;
 	let el;
@@ -11,25 +11,20 @@
 		},
 		close() {
 			el.close();
-		}
-	}
+		},
+	};
 
 	onMount(() => {
 		modal.open();
-	})
-
-	function onClick() {
-		el.close()
-	}
+	});
 </script>
 
-<dialog bind:this={el} on:cancel|preventDefault transition:scale={{start: 0.8}}>
+<dialog bind:this={el} on:cancel|preventDefault transition:scale={{ start: 0.8 }}>
 	{#if title}<h2>{title}</h2>{/if}
-	<slot></slot>
+	<slot />
 </dialog>
 
 <style lang="scss">
-
 	@keyframes backgroundIn {
 		from {
 			background-color: hsla(0, 0%, 0%, 0%);

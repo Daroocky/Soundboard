@@ -1,13 +1,12 @@
 <script lang="ts">
-
 	export let title = "";
 	export let selected = false;
 	export let interactable = false;
 </script>
 
-<section class:interactable class:selected on:click|stopPropagation tabindex={interactable ? 0 : false}>
+<section class:interactable class:selected on:click|stopPropagation>
 	<h2>{title}</h2>
-	<slot></slot>
+	<slot />
 </section>
 
 <style lang="scss">

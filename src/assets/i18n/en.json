@@ -1,53 +1,53 @@
 {
-  "header": {
-    "edit": "Edit",
-    "live": "Live"
-  },
-  "config": {
-    "app": {
-      "groupTitleApp": "App",
-      "language": "Language",
-      "languages": {
-        "en": "English",
-        "de": "Deutsch"
-      },
-      "addGroup": "Add group"
-    },
-    "group": {
-      "title": "Title",
-      "addSound": "Add new sound",
-      "groupTitleDanger": "Danger zone",
-      "deleteGroup": "Delete group"
-    },
-    "sound": {
-      "title": "Title",
-      "color": "Color",
-      "colors": {
-        "red": "Red",
-        "orange": "Orange",
-        "yellow": "Yellow",
-        "green": "Green",
-        "turquoise": "Turquoise",
-        "blue": "Blue",
-        "purple": "Purple",
-        "pink": "Pink"
-      },
-      "shortcut": "Shortcut",
-      "groupTitlePlayback": "Playback",
-      "loop": "Loop",
-      "solo": "Solo",
-      "pausable": "Pausable",
-      "groupTitleFile": "File",
-      "groupTitleDanger": "Danger zone",
-      "deleteSound": "Delete this sound"
-    }
-  },
-  "form": {
-    "upload": {
-      "defaultLabel": "Drag your files here or click in this area."
-    },
-    "delete": {
-      "confirm": "Are you sure?"
-    }
-  }
+	"header": {
+		"edit": "Edit",
+		"live": "Live"
+	},
+	"config": {
+		"app": {
+			"groupTitleApp": "App",
+			"language": "Language",
+			"languages": {
+				"en": "English",
+				"de": "Deutsch"
+			},
+			"addGroup": "Add group"
+		},
+		"group": {
+			"title": "Title",
+			"addSound": "Add new sound",
+			"groupTitleDanger": "Danger zone",
+			"deleteGroup": "Delete group"
+		},
+		"sound": {
+			"title": "Title",
+			"color": "Color",
+			"colors": {
+				"red": "Red",
+				"orange": "Orange",
+				"yellow": "Yellow",
+				"green": "Green",
+				"turquoise": "Turquoise",
+				"blue": "Blue",
+				"purple": "Purple",
+				"pink": "Pink"
+			},
+			"shortcut": "Shortcut",
+			"groupTitlePlayback": "Playback",
+			"loop": "Loop",
+			"solo": "Solo",
+			"pauseable": "pauseable",
+			"groupTitleFile": "File",
+			"groupTitleDanger": "Danger zone",
+			"deleteSound": "Delete this sound"
+		}
+	},
+	"form": {
+		"upload": {
+			"defaultLabel": "Drag your files here or click in this area."
+		},
+		"delete": {
+			"confirm": "Are you sure?"
+		}
+	}
 }

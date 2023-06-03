@@ -1,45 +1,45 @@
 {
-  "header": {
-    "edit": "Bearbeiten",
-    "live": "Live"
-  },
-  "config": {
-    "app": {
-      "groupTitleApp": "App",
-      "language": "Sprache",
-      "languages": {
-        "en": "English",
-        "de": "Deutsch"
-      },
-      "addGroup": "Gruppe hinzufügen"
-    },
-    "group": {
-      "title": "Titel",
-      "addSound": "Sound hinzufügen",
-      "groupTitleDanger": "Gefahrenzone",
-      "deleteGroup": "Gruppe löschen"
-    },
-    "sound": {
-      "title": "Titel",
-      "color": "Farbe",
-      "colors": {
-        "red": "Rot",
-        "green": "Grün",
-        "blue": "Blau"
-      },
-      "shortcut": "Tastaturkürzel",
-      "groupTitlePlayback": "Wiedergabe",
-      "loop": "Loop",
-      "solo": "Solo",
-      "pausable": "Pausierbar",
-      "groupTitleFile": "Datei",
-      "groupTitleDanger": "Gefahrenzone",
-      "deleteSound": "Sound löschen"
-    }
-  },
-  "form": {
-    "upload": {
-      "defaultLabel": "Ziehe deine Datei hier hin oder klicke in den Bereich."
-    }
-  }
+	"header": {
+		"edit": "Bearbeiten",
+		"live": "Live"
+	},
+	"config": {
+		"app": {
+			"groupTitleApp": "App",
+			"language": "Sprache",
+			"languages": {
+				"en": "English",
+				"de": "Deutsch"
+			},
+			"addGroup": "Gruppe hinzufügen"
+		},
+		"group": {
+			"title": "Titel",
+			"addSound": "Sound hinzufügen",
+			"groupTitleDanger": "Gefahrenzone",
+			"deleteGroup": "Gruppe löschen"
+		},
+		"sound": {
+			"title": "Titel",
+			"color": "Farbe",
+			"colors": {
+				"red": "Rot",
+				"green": "Grün",
+				"blue": "Blau"
+			},
+			"shortcut": "Tastaturkürzel",
+			"groupTitlePlayback": "Wiedergabe",
+			"loop": "Loop",
+			"solo": "Solo",
+			"pauseable": "Pausierbar",
+			"groupTitleFile": "Datei",
+			"groupTitleDanger": "Gefahrenzone",
+			"deleteSound": "Sound löschen"
+		}
+	},
+	"form": {
+		"upload": {
+			"defaultLabel": "Ziehe deine Datei hier hin oder klicke in den Bereich."
+		}
+	}
 }

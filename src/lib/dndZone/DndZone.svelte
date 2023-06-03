@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Sortable from "sortablejs";
-	import {createEventDispatcher, onDestroy, onMount} from "svelte";
-	import {dndState} from "./dndZoneStore";
+	import { createEventDispatcher, onDestroy, onMount } from "svelte";
+	import { dndState } from "./dndZoneStore";
 
-	export let items;
+	export let items: unknown[];
 	export let group = "";
 
 	let sortable;
@@ -17,8 +17,7 @@
 		arrayCopy.splice(toIndex, 0, element);
 
 		return arrayCopy;
-	}
-
+	};
 
 	function onUpdate(event) {
 		items = moveElement(items, event.oldIndex, event.newIndex);
@@ -41,7 +40,7 @@
 	}
 
 	function onEnd() {
-		dndState.set(null)
+		dndState.set(null);
 	}
 
 	onMount(() => {
@@ -52,7 +51,7 @@
 			onAdd,
 			onRemove,
 			onStart,
-			onEnd
+			onEnd,
 		});
 	});
 
@@ -60,17 +59,17 @@
 		if (sortable) {
 			sortable.destroy();
 		}
-	})
+	});
 </script>
 
 <div bind:this={el}>
-	{#each items as item(item.id)}
+	{#each items as item (item.id)}
 		<slot {item} />
 	{/each}
 </div>
 
 <style>
-  :global(.sortable-ghost) {
-    opacity: 0;
-  }
+	:global(.sortable-ghost) {
+		opacity: 0;
+	}
 </style>

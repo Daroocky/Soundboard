@@ -1,4 +1,4 @@
-import Dexie, {type Table} from 'dexie';
+import Dexie, { type Table } from "dexie";
 
 export interface App {
 	id?: number;
@@ -14,13 +14,13 @@ export interface Sound {
 	shortcut: string;
 	loop: boolean;
 	solo: boolean;
-	pausable: boolean;
+	pauseable: boolean;
 	volume: number;
 	file: {
-		filename: string,
-		blob: string,
-		waveform: string
-	}
+		filename: string;
+		blob: string;
+		waveform: string;
+	};
 }
 
 export interface Group {
@@ -37,11 +37,11 @@ export class Database extends Dexie {
 	groups!: Table<Group>;
 
 	constructor() {
-		super('soundboard');
+		super("soundboard");
 		this.version(1).stores({
 			app: "++id",
-			sounds: '++id, title, group, position, shortcut',
-			groups: "++id, title, position"
+			sounds: "++id, title, group, position, shortcut",
+			groups: "++id, title, position",
 		});
 	}
 }

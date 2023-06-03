@@ -1,30 +1,31 @@
 <script lang="ts">
-	import {db} from "../../../db";
-	import {editObject} from "../../../stores";
+	import { db } from "../../../db";
+	import { editObject } from "../../../stores";
 	import DndZone from "../../dndZone/DndZone.svelte";
+	import Group from "../../ui/Group.svelte";
 	import GroupElement from "../../ui/GroupElement.svelte";
 	import SoundButton from "../../ui/SoundButton.svelte";
 
-	export let groups;
+	export let groups: Group[];
 
-	function updateGroupOrder({detail}) {
-		const dbUpdate = detail.map((entry, i) => ({
-			key: entry.id,
-			changes: {
-				position: i
-			}
-		}))
-
-		db.groups.bulkUpdate(dbUpdate);
-	}
-
-	function updateSoundOrder({detail}) {
+	function updateGroupOrder({ detail }) {
 		const dbUpdate = detail.map((entry, i) => ({
 			key: entry.id,
 			changes: {
 				position: i,
-			}
-		}))
+			},
+		}));
+
+		db.groups.bulkUpdate(dbUpdate);
+	}
+
+	function updateSoundOrder({ detail }) {
+		const dbUpdate = detail.map((entry, i) => ({
+			key: entry.id,
+			changes: {
+				position: i,
+			},
+		}));
 
 		db.sounds.bulkUpdate(dbUpdate);
 	}
@@ -34,54 +35,53 @@
 			key: entry.id,
 			changes: {
 				position: i,
-				group: groupId
-			}
-		}))
+				group: groupId,
+			},
+		}));
 
 		db.sounds.bulkUpdate(dbUpdate);
 	}
 
 	function editGroup(id) {
-		editObject.set({type: "group", id});
+		editObject.set({ type: "group", id });
 	}
 
 	function editSound(id) {
-		editObject.set({type: "audio", id});
+		editObject.set({ type: "audio", id });
 	}
 </script>
 
 <div>
 	<DndZone items={groups} let:item={group} on:update={updateGroupOrder}>
 		<GroupElement
-		 interactable={true}
-		 on:click={() => editGroup(group.id)}
-		 selected={$editObject && $editObject.type === "group" && $editObject.id === group.id}
-		 title={group.title}>
-
+			interactable={true}
+			on:click={() => editGroup(group.id)}
+			selected={$editObject && $editObject.type === "group" && $editObject.id === group.id}
+			title={group.title}
+		>
 			<DndZone
-			 group="sounds"
-			 items={group.sounds}
-			 let:item={sound}
-			 on:add={({detail}) =>changeGroupOfSound(detail, group.id)}
-			 on:update={updateSoundOrder}>
+				group="sounds"
+				items={group.sounds}
+				let:item={sound}
+				on:add={({ detail }) => changeGroupOfSound(detail, group.id)}
+				on:update={updateSoundOrder}
+			>
 				<SoundButton
-				 color={sound.color}
-				 id={sound.id}
-				 isLoading={false}
-				 isPlaying={$editObject && $editObject.type === "audio" && $editObject.id === sound.id}
-				 loop={sound.loop}
-				 on:click={() => editSound(sound.id)}
-				 pausable={sound.pausable}
-				 shortcut={sound.shortcut}
-				 solo={sound.solo}
-				 waveform={sound.file.waveform}
-				>{sound.title}</SoundButton>
+					color={sound.color}
+					id={sound.id}
+					isLoading={false}
+					isPlaying={$editObject && $editObject.type === "audio" && $editObject.id === sound.id}
+					loop={sound.loop}
+					on:click={() => editSound(sound.id)}
+					pauseable={sound.pauseable}
+					shortcut={sound.shortcut}
+					solo={sound.solo}
+					waveform={sound.file.waveform}>{sound.title}</SoundButton
+				>
 			</DndZone>
-
 		</GroupElement>
 	</DndZone>
 </div>
-
 
 <style lang="scss">
 	div {

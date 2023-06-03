@@ -10,7 +10,6 @@
 	<PageHeader />
 	<PageMain />
 	<PageSidebar />
-
 </div>
 
 <footer>

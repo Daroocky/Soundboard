@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {t} from "svelte-i18n";
-	import {db} from "../../../db";
-	import {editObject} from "../../../stores";
-	import {createConfigStore} from "../../../utils/configDataStore";
+	import { t } from "svelte-i18n";
+	import { db } from "../../../db";
+	import { editObject } from "../../../stores";
+	import { createConfigStore } from "../../../utils/configDataStore";
 	import ConfigButton from "../inputs/ConfigButton.svelte";
 	import ConfigDelete from "../inputs/ConfigDelete.svelte";
 	import ConfigForm from "../inputs/ConfigForm.svelte";
@@ -12,13 +12,13 @@
 
 	export let id: number;
 
-	const {data, reloadData, onDataChanged} = createConfigStore(() => {
+	const { data, reloadData, onDataChanged } = createConfigStore(() => {
 		return db.groups.where("id").equals(id).first();
 	});
 
-	$: reloadData(id)
+	$: reloadData(id);
 
-	onDataChanged(newData => db.groups.update(id, newData));
+	onDataChanged((newData) => db.groups.update(id, newData));
 
 	async function removeGroup() {
 		db.groups.delete(id);
@@ -27,7 +27,7 @@
 
 		editObject.set({
 			type: "app",
-			id: 0
+			id: 0,
 		});
 	}
 
@@ -37,21 +37,19 @@
 			position: Date.now(),
 			color: "",
 			group: id,
-			file: {blob: "", filename: "", waveform: ""},
+			file: { blob: "", filename: "", waveform: "" },
 			loop: false,
-			pausable: false,
+			pauseable: false,
 			shortcut: "",
 			solo: false,
-			volume: 100
+			volume: 100,
 		});
 
 		editObject.set({
 			type: "audio",
-			id: addedSoundId
-		})
+			id: addedSoundId,
+		});
 	}
-
-
 </script>
 
 <ConfigForm data={$data}>
@@ -66,7 +64,3 @@
 		<ConfigDelete on:delete={removeGroup}>{$t("config.group.deleteGroup")}</ConfigDelete>
 	</ConfigSection>
 </ConfigForm>
-
-
-
-

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {createEventDispatcher} from "svelte";
-	import {t} from "svelte-i18n";
+	import { createEventDispatcher } from "svelte";
+	import { t } from "svelte-i18n";
 	import ConfigButton from "./ConfigButton.svelte";
 
 	const dispatcher = createEventDispatcher();
@@ -18,7 +18,7 @@
 		}
 
 		const now = new Date();
-		const interactionTime = now - startAction;
+		const interactionTime = now.getTime() - startAction.getTime();
 
 		if (interactionTime >= 350) {
 			dispatcher("delete");
@@ -33,16 +33,15 @@
 </script>
 
 <ConfigButton
- danger={confirmState}
- icon="delete"
- on:click={onButtonClick}
- on:focusout={deactivateConfirm}
- on:pointerleave={deactivateConfirm}
+	danger={confirmState}
+	icon="delete"
+	on:click={onButtonClick}
+	on:focusout={deactivateConfirm}
+	on:pointerleave={deactivateConfirm}
 >
 	{#if confirmState}
 		{confirmLabel}
-	{:else }
+	{:else}
 		<slot />
 	{/if}
 </ConfigButton>
-

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import {mapAccentColor, mapColor} from "../../utils/helper";
+	import { mapAccentColor, mapColor } from "../../utils/helper";
 	import Icon from "./Icon.svelte";
 
 	export let id = 0;
 	export let color = "";
-	export let waveform = '';
+	export let waveform = "";
 	export let shortcut;
 	export let isPlaying = false;
 	export let isLoading = true;
@@ -12,24 +12,24 @@
 	export let progress = 0;
 	export let loop = false;
 	export let solo = false;
-	export let pausable = false;
+	export let pauseable = false;
 </script>
 
 <button
- class:isFading
- class:isLoading
- class:isPlaying
- data-soundid={id}
- on:click|stopPropagation
- style:--color={mapColor(color)}
- style:--color-accent={mapAccentColor(color)}
- style:--progress={progress+"%"}
+	class:isFading
+	class:isLoading
+	class:isPlaying
+	data-soundid={id}
+	on:click|stopPropagation
+	style:--color={mapColor(color)}
+	style:--color-accent={mapAccentColor(color)}
+	style:--progress={progress + "%"}
 >
-	<span class="progress"></span>
-	<span class="soundwave" style:--waveform={`url("${waveform}")`}></span>
+	<span class="progress" />
+	<span class="soundwave" style:--waveform={`url("${waveform}")`} />
 	<span class="content">
 		<span class="label">
-			<slot></slot>
+			<slot />
 		</span>
 		{#if shortcut}
 			<span class="shortcut">{shortcut}</span>
@@ -37,10 +37,9 @@
 		<span class="settings">
 			{#if loop}<Icon name="laps" />{/if}
 			{#if solo}<Icon name="adjust" />{/if}
-			{#if pausable}<Icon name="autopause" />{/if}
+			{#if pauseable}<Icon name="autopause" />{/if}
 		</span>
 	</span>
-
 </button>
 
 <style lang="scss">
@@ -55,7 +54,8 @@
 	}
 
 	@keyframes fadingPuls {
-		from, to {
+		from,
+		to {
 			border-color: var(--color);
 		}
 
@@ -101,7 +101,11 @@
 
 	.progress {
 		position: absolute;
-		background: linear-gradient(90deg, var(--color, var(--color-primary)) var(--progress, 0%), transparent var(--progress, 0%));
+		background: linear-gradient(
+			90deg,
+			var(--color, var(--color-primary)) var(--progress, 0%),
+			transparent var(--progress, 0%)
+		);
 		inset: 0;
 	}
 
@@ -132,9 +136,9 @@
 		grid-template-columns: 1fr 10cqmin 1fr;
 		grid-template-rows: 8cqmin 1fr 8cqmin;
 		grid-template-areas:
-    "label label label"
-    ". . ."
-    "settings shortcut timer";
+			"label label label"
+			". . ."
+			"settings shortcut timer";
 
 		inset: 0;
 
