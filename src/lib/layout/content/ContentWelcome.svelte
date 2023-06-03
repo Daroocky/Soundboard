@@ -4,14 +4,14 @@
 	import Card from "../../ui/intro/Card.svelte";
 	import { scale, fly } from "svelte/transition";
 
-	export const groups = []; //To hide the warning
+	export let groups = []; //To hide the warning
 
 	setContext("group", "demo");
 </script>
 
 <section class="grid" out:fly={{ x: -352 }}>
 	<div class="box welcome" in:scale={{ start: 0.8, delay: 250 }}>
-		<h1>Welcome to your <span>soundboard</span></h1>
+		<h1>Welcome to your <span>Soundboard</span></h1>
 
 		<div class="soundwaves" />
 	</div>

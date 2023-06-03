@@ -1,8 +1,14 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { createEventDispatcher, onMount } from "svelte";
 	import { scale } from "svelte/transition";
+	import { clickOutside } from "../../utils/clickOutside";
+	import Icon from "./Icon.svelte";
 
 	export let title;
+	export let open = false;
+	export let closable = true;
+
+	const dispatch = createEventDispatcher();
 	let el;
 
 	export const modal = {
@@ -11,20 +17,40 @@
 		},
 		close() {
 			el.close();
+			dispatch("close");
 		},
 	};
 
 	onMount(() => {
-		modal.open();
+		if (open) {
+			modal.open();
+		}
 	});
+
+	function onCancel() {
+		if (!closable) {
+			return;
+		}
+
+		modal.close();
+	}
 </script>
 
-<dialog bind:this={el} on:cancel|preventDefault transition:scale={{ start: 0.8 }}>
-	{#if title}<h2>{title}</h2>{/if}
-	<slot />
+<dialog bind:this={el} on:cancel|preventDefault={onCancel} transition:scale={{ start: 0.8 }}>
+	<div use:clickOutside on:click_outside={onCancel}>
+		<header>
+			{#if title}<h2>{title}</h2>{/if}
+			{#if closable}
+				<button class="close" on:click={onCancel}><Icon name="close" /></button>
+			{/if}
+		</header>
+		<slot />
+	</div>
 </dialog>
 
 <style lang="scss">
+	@use "src/mixins";
+
 	@keyframes backgroundIn {
 		from {
 			background-color: hsla(0, 0%, 0%, 0%);
@@ -38,7 +64,7 @@
 	}
 
 	dialog {
-		min-width: 24rem;
+		width: 95%;
 		color: var(--color-gray-100);
 		border: none;
 		border-radius: var(--radius-normal);
@@ -48,11 +74,29 @@
 			animation: backgroundIn 250ms ease-in-out;
 			animation-fill-mode: forwards;
 		}
+
+		@include mixins.responsive("small") {
+			width: max-content;
+			min-width: 25rem;
+			max-width: 80%;
+		}
 	}
 
-	h2 {
-		font-size: 1.2rem;
-		font-weight: var(--weight-bold);
-		margin: 0 0 0.5rem;
+	header {
+		display: flex;
+		justify-content: space-between;
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: var(--weight-bold);
+			margin: 0 0 0.5rem;
+		}
+
+		button {
+			padding: 0;
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+		}
 	}
 </style>

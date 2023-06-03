@@ -1,9 +1,26 @@
 <script lang="ts">
+	import { title } from "radash";
+	import Changelog from "./lib/layout/Changelog.svelte";
 	import PageHeader from "./lib/layout/PageHeader.svelte";
 	import PageMain from "./lib/layout/PageMain.svelte";
 	import PageSidebar from "./lib/layout/PageSidebar.svelte";
-	import { editMode } from "./stores";
+	import Model from "./lib/ui/Model.svelte";
+	import { VERSION, changelogOpen, editMode } from "./stores";
+
+	let imprintModel;
+
+	function openChangelog() {
+		changelogOpen.set(true);
+	}
 </script>
+
+<Changelog />
+
+<Model title="Impressum" bind:modal={imprintModel}>
+	<p>Stefan Roock</p>
+	<p>Industriestraße 35 <br />40227 Düsseldorf</p>
+	<p>Kontakt: soundboard[at]email.de</p>
+</Model>
 
 <div class="page" class:editMode={$editMode}>
 	<PageHeader />
@@ -14,8 +31,9 @@
 <footer>
 	<ul>
 		<li>&copy; Stefan Roock</li>
-		<li><a href="#">Imprint</a></li>
-		<li><a href="#">Buy me a coffee</a></li>
+		<li><button on:click={openChangelog}>v{VERSION}</button></li>
+		<li><button on:click={imprintModel.open}>Imprint</button></li>
+		<li><a href="https://bmc.link/stefanroock" target="_blank">Buy me a coffee</a></li>
 	</ul>
 </footer>
 
@@ -99,8 +117,14 @@
 			list-style: none;
 		}
 
-		a {
+		a,
+		button {
 			color: inherit;
+			background: transparent;
+			border: none;
+			padding: 0;
+			text-decoration: underline;
+			cursor: pointer;
 		}
 	}
 </style>

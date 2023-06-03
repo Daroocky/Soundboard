@@ -2,6 +2,7 @@ import Dexie, { type Table } from "dexie";
 
 export interface App {
 	id?: number;
+	version: string;
 	language: string;
 }
 
