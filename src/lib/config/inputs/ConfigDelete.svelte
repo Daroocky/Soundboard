@@ -26,9 +26,11 @@
 	}
 
 	function deactivateConfirm() {
-		if (confirmState) {
-			confirmState = false;
+		if (!confirmState) {
+			return;
 		}
+
+		confirmState = false;
 	}
 </script>
 
@@ -37,7 +39,7 @@
 	icon="delete"
 	on:click={onButtonClick}
 	on:focusout={deactivateConfirm}
-	on:pointerleave={deactivateConfirm}
+	on:mouseleave={deactivateConfirm}
 >
 	{#if confirmState}
 		{confirmLabel}

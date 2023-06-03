@@ -2,9 +2,8 @@
 	import PageHeader from "./lib/layout/PageHeader.svelte";
 	import PageMain from "./lib/layout/PageMain.svelte";
 	import PageSidebar from "./lib/layout/PageSidebar.svelte";
-	import {editMode} from "./stores";
+	import { editMode } from "./stores";
 </script>
-
 
 <div class="page" class:editMode={$editMode}>
 	<PageHeader />
@@ -19,7 +18,6 @@
 		<li><a href="#">Buy me a coffee</a></li>
 	</ul>
 </footer>
-
 
 <style lang="scss">
 	@use "mixins";
@@ -47,12 +45,14 @@
 
 		:global(main) {
 			grid-area: 2 / 1 / 3 / 1;
+			padding-bottom: 3rem;
 		}
 
 		:global(aside) {
 			transition: translate 250ms ease-in-out;
 			translate: 100% 0;
 			grid-area: 2 / 1 / 3 / 1;
+			padding-bottom: 3rem;
 		}
 
 		@include mixins.responsive("small") {
@@ -84,7 +84,9 @@
 		bottom: 0;
 		left: 0;
 		padding: 0.5rem 1rem;
+		padding-top: 2rem;
 		color: var(--color-gray-400);
+		background: linear-gradient(0deg, var(--color-gray-800) 60%, transparent);
 
 		ul {
 			display: flex;
