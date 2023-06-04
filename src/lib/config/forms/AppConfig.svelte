@@ -19,6 +19,12 @@
 	async function addGroup() {
 		createNewGroup();
 	}
+
+	function localeChanged(event) {
+		window.gtag("event", "language_changed", {
+			locale: event.detail.value,
+		});
+	}
 </script>
 
 <ConfigForm data={$data}>
@@ -28,6 +34,7 @@
 			label={$t("config.app.language")}
 			let:option
 			options={$locales}
+			on:input={localeChanged}
 		>
 			{$t("config.app.languages." + option.value)}
 		</ConfigDropdown>

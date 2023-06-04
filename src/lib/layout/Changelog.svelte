@@ -7,6 +7,7 @@
 	$: {
 		if (modal) {
 			if ($changelogOpen) {
+				window.gtag("event", "changelog_viewd");
 				modal.open();
 			} else {
 				modal.close();
