@@ -101,7 +101,19 @@
 			}
 		}
 
-		@include mixins.responsive("small") {
+		@include mixins.responsive("medium") {
+			padding: 0;
+			gap: 1rem;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(4, auto);
+			grid-template-areas:
+				"welcome welcome welcome"
+				"sound sound info1"
+				"info info info2"
+				"info info info3";
+		}
+
+		@include mixins.responsive("large") {
 			padding: 0;
 			gap: 1rem;
 			grid-template-columns: repeat(5, 1fr);

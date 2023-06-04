@@ -60,3 +60,39 @@ const editObjectStore = () => {
 export const editObject = editObjectStore();
 
 export const shortcutTrigger = writable(null);
+
+const cookiesAcceptedStore = () => {
+	const storageData = localStorage.getItem("accepts-cookies");
+
+	const { set, subscribe } = writable(storageData || null);
+
+	subscribe((value) => {
+		if (value) {
+			const hasLoaded = document.querySelector("head script[data-analytics]");
+
+			if (hasLoaded) {
+				return;
+			}
+
+			const script = document.createElement("script");
+			script.setAttribute("data-analytics", "true");
+			script.setAttribute("async", "true");
+			script.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=G-3XRFKJM3VV");
+			document.querySelector("head").appendChild(script);
+		}
+	});
+
+	return {
+		set(data) {
+			localStorage.setItem("accepts-cookies", data ? "1" : "0");
+			set(data);
+		},
+		subscribe(callback) {
+			return subscribe((data) => {
+				callback(data == "1" ? true : data == null ? null : false);
+			});
+		},
+	};
+};
+
+export const acceptsCookies = cookiesAcceptedStore();

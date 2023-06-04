@@ -3,6 +3,11 @@
 		"edit": "Edit",
 		"live": "Live"
 	},
+	"cookie-banner": {
+		"summary": "We use cookies to deliver and enhance the quality of this service and to analyze traffic.",
+		"accept": "Accept",
+		"denie": "No thanks"
+	},
 	"start": {
 		"title": {
 			"prefix": "Welcome to your",

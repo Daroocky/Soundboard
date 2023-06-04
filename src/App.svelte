@@ -4,7 +4,7 @@
 	import PageHeader from "./lib/layout/PageHeader.svelte";
 	import PageMain from "./lib/layout/PageMain.svelte";
 	import PageSidebar from "./lib/layout/PageSidebar.svelte";
-	import { VERSION, changelogOpen, editMode } from "./stores";
+	import { editMode } from "./stores";
 </script>
 
 <Changelog />

@@ -35,7 +35,7 @@
 			font-size: 1rem;
 		}
 
-		@include mixins.responsive("small") {
+		@include mixins.responsive("medium") {
 			font-size: 3rem;
 
 			span {

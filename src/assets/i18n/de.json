@@ -3,6 +3,11 @@
 		"edit": "Bearbeiten",
 		"live": "Live"
 	},
+	"cookie-banner": {
+		"summary": "Wir nutzen Cookies um die Qualität dieses Tools zu verbessern und zu analysieren.",
+		"accept": "Alles klar",
+		"denie": "Nein danke"
+	},
 	"start": {
 		"title": {
 			"prefix": "Willkommen in deinem",
