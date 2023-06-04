@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {t} from "svelte-i18n";
-	import {editMode, editObject} from "../../stores";
+	import { t } from "svelte-i18n";
+	import { editMode, editObject } from "../../stores";
 	import ConfigButton from "../config/inputs/ConfigButton.svelte";
 	import Icon from "../ui/Icon.svelte";
 
@@ -10,15 +10,21 @@
 		if ($editMode) {
 			editObject.set({
 				type: "app",
-				id: 0
+				id: 0,
 			});
 			return;
 		}
 
 		setTimeout(() => {
 			editObject.set(null);
-		}, 250)
+		}, 250);
+	}
 
+	function showAppConfig() {
+		editObject.set({
+			type: "app",
+			id: 0,
+		});
 	}
 </script>
 
@@ -28,9 +34,8 @@
 		Soundboard
 	</h1>
 
-
-	<div>
-		<ConfigButton icon={$editMode ? "screen_record" : "edit"} on:click={toggleEdit}>
+	<div class="buttons">
+		<ConfigButton icon={$editMode ? "screen_record" : "settings"} on:click={toggleEdit}>
 			{$editMode ? $t("header.live") : $t("header.edit")}
 		</ConfigButton>
 	</div>
@@ -54,5 +59,10 @@
 		text-transform: uppercase;
 		color: var(--color-primary);
 		gap: 0.4rem;
+	}
+
+	.buttons {
+		display: flex;
+		gap: 0.5rem;
 	}
 </style>

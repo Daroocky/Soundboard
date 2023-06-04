@@ -92,12 +92,12 @@
 		{#if duplicateShortcutTitle}
 			<div class="shortcutInfo">
 				<Icon name="info" />
-				This shortcut is already in use by "{duplicateShortcutTitle}".
+				{$t("config.sound.shortcutInUse", { values: { name: duplicateShortcutTitle } })}
 			</div>
 		{/if}
 	</ConfigSection>
 	<ConfigSection title={$t("config.sound.groupTitlePlayback")}>
-		<ConfigVolume bind:value={$data.volume} label="Volume" />
+		<ConfigVolume bind:value={$data.volume} label={$t("config.sound.volume")} />
 		<ConfigCheckbox bind:value={$data.loop} label={$t("config.sound.loop")} />
 		<ConfigCheckbox bind:value={$data.solo} label={$t("config.sound.solo")} />
 		<ConfigCheckbox bind:value={$data.pauseable} label={$t("config.sound.pauseable")} />

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import {editObject} from "../../stores.ts";
+	import { t } from "svelte-i18n";
+	import { editObject } from "../../stores";
 	import AppConfig from "../config/forms/AppConfig.svelte";
 	import AudioConfig from "../config/forms/AudioConfig.svelte";
 	import GroupConfig from "../config/forms/GroupConfig.svelte";
@@ -9,12 +10,11 @@
 		audio: AudioConfig,
 		group: GroupConfig,
 		app: AppConfig,
-	}
+	};
 
 	function hideSidebar() {
 		editObject.set(null);
 	}
-
 </script>
 
 <aside class:hide={$editObject == null}>
@@ -22,13 +22,12 @@
 		<button on:click={hideSidebar}>
 			<Icon name="arrow_back" />
 		</button>
-		<h2>{$editObject ? $editObject.type : ""}</h2>
+		<h2>{$editObject ? $t("config.title." + $editObject.type) : $t("config.title.fallback")}</h2>
 	</div>
 	<div class="content">
-		<svelte:component id="{$editObject?.id}" this={editConfigs[$editObject?.type]} />
+		<svelte:component this={editConfigs[$editObject?.type]} id={$editObject?.id} />
 	</div>
 </aside>
-
 
 <style lang="scss">
 	@use "src/mixins";
@@ -75,7 +74,6 @@
 			margin: 0;
 			padding: 0;
 		}
-
 	}
 
 	.content {

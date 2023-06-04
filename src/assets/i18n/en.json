@@ -4,6 +4,12 @@
 		"live": "Live"
 	},
 	"config": {
+		"title": {
+			"fallback": "Soundboard",
+			"app": "Soundboard settings",
+			"group": "Group settings",
+			"audio": "Sound settings"
+		},
 		"app": {
 			"groupTitleApp": "App",
 			"language": "Language",
@@ -15,6 +21,7 @@
 		},
 		"group": {
 			"title": "Title",
+			"volume": "Volume",
 			"addSound": "Add new sound",
 			"groupTitleDanger": "Danger zone",
 			"deleteGroup": "Delete group"
@@ -32,7 +39,9 @@
 				"purple": "Purple",
 				"pink": "Pink"
 			},
+			"volume": "Volume",
 			"shortcut": "Shortcut",
+			"shortcutInUse": "This shortcut is already in use by \"{name}\".",
 			"groupTitlePlayback": "Playback",
 			"loop": "Loop",
 			"solo": "Solo",
@@ -48,6 +57,9 @@
 		},
 		"delete": {
 			"confirm": "Are you sure?"
+		},
+		"shortcut": {
+			"placeholder": "Press a key to create shortcut"
 		}
 	}
 }

@@ -9,7 +9,7 @@
 	setContext("group", "demo");
 </script>
 
-<section class="grid" out:fly={{ x: -352 }}>
+<section class="grid">
 	<div class="box welcome" in:scale={{ start: 0.8, delay: 250 }}>
 		<h1>Welcome to your <span>Soundboard</span></h1>
 
@@ -52,7 +52,6 @@
 
 	.grid {
 		display: grid;
-		width: 100%;
 		padding: 0.5rem;
 		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: repeat(5, auto);
@@ -95,7 +94,6 @@
 		@include mixins.responsive("small") {
 			padding: 0;
 			gap: 1rem;
-			width: min(100vw, 1200px);
 			grid-template-columns: repeat(5, 1fr);
 			grid-template-rows: repeat(3, 1fr);
 			grid-template-areas:

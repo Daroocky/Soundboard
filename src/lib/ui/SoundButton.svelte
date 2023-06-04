@@ -76,7 +76,7 @@
 		background-color: var(--color-gray-900);
 		container-type: inline-size;
 		--progress: 0%;
-		aspect-ratio: 20 / 9;
+		aspect-ratio: var(--card-ratio);
 		scale: 0.95;
 
 		&[data-soundid="demo"] {

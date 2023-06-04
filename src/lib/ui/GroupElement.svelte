@@ -22,7 +22,6 @@
 		container-type: inline-size;
 
 		@include mixins.responsive("small") {
-			width: calc(100vw - 24rem);
 			padding: 1rem;
 		}
 
@@ -37,12 +36,17 @@
 		:global(> div) {
 			display: grid;
 			width: 100%;
-			gap: 10px;
+			gap: 0.5rem;
 			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 
 			@include mixins.responsive("small") {
 				grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 			}
+		}
+
+		:global(> div.dragging::after) {
+			content: " ";
+			aspect-ratio: var(--card-ratio);
 		}
 	}
 
@@ -51,5 +55,10 @@
 		font-weight: var(--weight-bold);
 		margin: 0 0 1rem;
 		text-align: left;
+
+		&:empty::before {
+			content: "???";
+			color: var(--color-gray-500);
+		}
 	}
 </style>

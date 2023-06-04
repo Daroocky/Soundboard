@@ -4,6 +4,12 @@
 		"live": "Live"
 	},
 	"config": {
+		"title": {
+			"fallback": "Soundboard",
+			"app": "Soundboard Einstellungen",
+			"group": "Gruppe Einstellungen",
+			"audio": "Sound Einstellungen"
+		},
 		"app": {
 			"groupTitleApp": "App",
 			"language": "Sprache",
@@ -15,6 +21,7 @@
 		},
 		"group": {
 			"title": "Titel",
+			"volume": "Lautstärke",
 			"addSound": "Sound hinzufügen",
 			"groupTitleDanger": "Gefahrenzone",
 			"deleteGroup": "Gruppe löschen"
@@ -27,7 +34,9 @@
 				"green": "Grün",
 				"blue": "Blau"
 			},
+			"volume": "Lautstärke",
 			"shortcut": "Tastaturkürzel",
+			"shortcutInUse": "Dieses Tastenkürzel wird bereits von \"{name}\" verwendet.",
 			"groupTitlePlayback": "Wiedergabe",
 			"loop": "Loop",
 			"solo": "Solo",
@@ -40,6 +49,12 @@
 	"form": {
 		"upload": {
 			"defaultLabel": "Ziehe deine Datei hier hin oder klicke in den Bereich."
+		},
+		"delete": {
+			"confirm": "Bist du sicher?"
+		},
+		"shortcut": {
+			"placeholder": "Wähle Taste für Tastenkürzel"
 		}
 	}
 }

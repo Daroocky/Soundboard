@@ -62,14 +62,17 @@
 	});
 </script>
 
-<div bind:this={el}>
+<div bind:this={el} class="drag-zone" class:dragging={$dndState}>
 	{#each items as item (item.id)}
 		<slot {item} />
 	{/each}
+	{#if !$dndState}
+		<slot name="additional" />
+	{/if}
 </div>
 
 <style>
 	:global(.sortable-ghost) {
-		opacity: 0;
+		opacity: 0.5;
 	}
 </style>

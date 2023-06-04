@@ -9,6 +9,7 @@
 	import ConfigInput from "../inputs/ConfigInput.svelte";
 	import ConfigSection from "../inputs/ConfigSection.svelte";
 	import ConfigVolume from "../inputs/ConfigVolume.svelte";
+	import { createNewSound } from "../editData";
 
 	export let id: number;
 
@@ -32,30 +33,14 @@
 	}
 
 	async function addSound() {
-		const addedSoundId = await db.sounds.add({
-			title: "",
-			position: Date.now(),
-			color: "",
-			group: id,
-			file: { blob: "", filename: "", waveform: "" },
-			loop: false,
-			pauseable: false,
-			shortcut: "",
-			solo: false,
-			volume: 100,
-		});
-
-		editObject.set({
-			type: "audio",
-			id: addedSoundId,
-		});
+		createNewSound(id);
 	}
 </script>
 
 <ConfigForm data={$data}>
 	<ConfigSection>
 		<ConfigInput bind:value={$data.title} label={$t("config.group.title")} />
-		<ConfigVolume bind:value={$data.volume} label="Volume" />
+		<ConfigVolume bind:value={$data.volume} label={$t("config.group.volume")} />
 	</ConfigSection>
 	<ConfigSection>
 		<ConfigButton icon="add" on:click={addSound}>{$t("config.group.addSound")}</ConfigButton>

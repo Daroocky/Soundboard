@@ -1,11 +1,11 @@
 <script lang="ts">
-	import {editMode, editObject, state} from "../../stores.ts";
+	import { editMode, editObject, state } from "../../stores.ts";
 	import ContentEdit from "./content/ContentEdit.svelte";
 	import ContentLive from "./content/ContentLive.svelte";
 	import ContentWelcome from "./content/ContentWelcome.svelte";
 
 	function edit() {
-		editObject.set({type: "app", id: 0});
+		editObject.set({ type: "app", id: 0 });
 	}
 
 	function selectView() {
@@ -22,11 +22,12 @@
 </script>
 
 <main on:click={edit}>
-	{#if $state}
-		<svelte:component this={selectView()} groups={$state.groups} />
-	{/if}
+	<div class="content">
+		{#if $state}
+			<svelte:component this={selectView()} groups={$state.groups} />
+		{/if}
+	</div>
 </main>
-
 
 <style lang="scss">
 	@use "src/mixins";
@@ -36,10 +37,18 @@
 		padding: 0.5rem;
 
 		@include mixins.responsive("small") {
+			padding: 1rem;
 			display: grid;
 			align-items: start;
 			justify-content: center;
-			padding: 1rem;
+		}
+
+		.content {
+			width: 100%;
+
+			@include mixins.responsive("small") {
+				width: calc(100vw - 24rem);
+			}
 		}
 	}
 </style>

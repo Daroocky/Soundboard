@@ -1,6 +1,7 @@
 <script lang="ts">
-	import {createEventDispatcher} from "svelte";
-	import {validShortcutKey} from "../../../utils/helper";
+	import { t } from "svelte-i18n";
+	import { createEventDispatcher } from "svelte";
+	import { validShortcutKey } from "../../../utils/helper";
 	import Icon from "../../ui/Icon.svelte";
 
 	export let label = "";
@@ -10,7 +11,7 @@
 	const dispatch = createEventDispatcher();
 
 	function onKey(event) {
-		const {key} = event;
+		const { key } = event;
 
 		if (validShortcutKey(key)) {
 			value = key.toUpperCase();
@@ -24,7 +25,7 @@
 	}
 
 	function focusInput() {
-		el.focus()
+		el.focus();
 	}
 </script>
 
@@ -35,19 +36,16 @@
 			<Icon name="keyboard" />
 			<div class="value">
 				{#if !value}
-					<span class="placeholder">Press a key to create shortcut</span>
+					<span class="placeholder">{$t("form.shortcut.placeholder")}</span>
 				{/if}
 				{value}
 			</div>
-
 		</div>
 		<button class="clear" on:click={clear}>
 			<Icon name="backspace" />
 		</button>
 	</div>
-
 </div>
-
 
 <style lang="scss">
 	.label {
