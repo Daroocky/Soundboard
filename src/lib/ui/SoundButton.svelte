@@ -3,6 +3,7 @@
 	import Icon from "./Icon.svelte";
 
 	export let id = 0;
+	export let editMode = false;
 	export let color = "";
 	export let waveform = "";
 	export let shortcut;
@@ -40,6 +41,11 @@
 			{#if pauseable}<Icon name="autopause" />{/if}
 		</span>
 	</span>
+	{#if editMode}
+		<span class="handle" on:click|stopPropagation={() => false}>
+			<Icon name="drag_indicator" />
+		</span>
+	{/if}
 </button>
 
 <style lang="scss">
@@ -186,5 +192,16 @@
 		align-content: center;
 		border-radius: var(--radius-normal);
 		background-color: var(--color-accent);
+	}
+
+	.handle {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		bottom: 0.5rem;
+		cursor: grab;
+		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
 	}
 </style>

@@ -72,6 +72,7 @@
 				<SoundButton
 					color={sound.color}
 					id={sound.id}
+					editMode={true}
 					isLoading={false}
 					isPlaying={$editObject && $editObject.type === "audio" && $editObject.id === sound.id}
 					loop={sound.loop}
@@ -79,8 +80,10 @@
 					pauseable={sound.pauseable}
 					shortcut={sound.shortcut}
 					solo={sound.solo}
-					waveform={sound.file.waveform}>{sound.title}</SoundButton
+					waveform={sound.file.waveform}
 				>
+					{sound.title}
+				</SoundButton>
 
 				<button
 					class="add-sound"

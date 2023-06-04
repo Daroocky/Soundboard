@@ -45,6 +45,7 @@
 
 	onMount(() => {
 		sortable = new Sortable(el, {
+			handle: ".handle",
 			animation: 250,
 			group,
 			onUpdate,
