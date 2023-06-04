@@ -3,6 +3,25 @@
 		"edit": "Bearbeiten",
 		"live": "Live"
 	},
+	"start": {
+		"title": {
+			"prefix": "Willkommen in deinem",
+			"soundboard": "Soundboard"
+		},
+		"info": {
+			"account": "Kein Account",
+			"local": "Alles Lokal",
+			"free": "Kostenlos"
+		},
+		"sound": {
+			"title": "Demo Sound"
+		},
+		"summary": {
+			"line1": "Erstelle dein eigenes Soundboard direkt in deinem Browser.",
+			"line2": "Du musst dich nicht registrieren. Alle Dateien und Einstellungen werden lokal auf deinem Gerät gespeichert.",
+			"line3": "Klick einfach auf den \"Bearbeiten\" Button oben um dein Soundboard zu bearbeiten."
+		}
+	},
 	"config": {
 		"title": {
 			"fallback": "Soundboard",
@@ -14,8 +33,8 @@
 			"groupTitleApp": "App",
 			"language": "Sprache",
 			"languages": {
-				"en": "English",
-				"de": "Deutsch"
+				"en-US": "English",
+				"de-DE": "Deutsch"
 			},
 			"addGroup": "Gruppe hinzufügen"
 		},

@@ -92,9 +92,10 @@
 			margin: 0 0 0.5rem;
 		}
 
-		button {
+		.close {
 			padding: 0;
 			background-color: transparent;
+			color: var(--color-gray-100);
 			border: none;
 			cursor: pointer;
 		}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { t } from "svelte-i18n";
 	import Sound from "../../ui/Sound.svelte";
 	import { setContext } from "svelte";
 	import Card from "../../ui/intro/Card.svelte";
@@ -9,48 +10,57 @@
 	setContext("group", "demo");
 </script>
 
-<section class="grid">
-	<div class="box welcome" in:scale={{ start: 0.8, delay: 250 }}>
-		<h1>Welcome to your <span>Soundboard</span></h1>
+<section>
+	<div class="grid">
+		<div class="box welcome" in:scale={{ start: 0.8, delay: 250 }}>
+			<h1>{$t("start.title.prefix")} <span>{$t("start.title.soundboard")}</span></h1>
 
-		<div class="soundwaves" />
-	</div>
+			<div class="soundwaves" />
+		</div>
 
-	<div in:scale={{ start: 0.8, delay: 350 }}>
-		<Card icon="account_circle" title="No account" />
-	</div>
+		<div in:scale={{ start: 0.8, delay: 350 }}>
+			<Card icon="account_circle" title={$t("start.info.account")} />
+		</div>
 
-	<div in:scale={{ start: 0.8, delay: 450 }}>
-		<Card icon="save" title="All local" />
-	</div>
+		<div in:scale={{ start: 0.8, delay: 450 }}>
+			<Card icon="save" title={$t("start.info.local")} />
+		</div>
 
-	<div in:scale={{ start: 0.8, delay: 550 }}>
-		<Card icon="payments" title="Free" />
-	</div>
+		<div in:scale={{ start: 0.8, delay: 550 }}>
+			<Card icon="payments" title={$t("start.info.free")} />
+		</div>
 
-	<div class="box info" in:scale={{ start: 0.8, delay: 750 }}>
-		<p>Create your own custom soundboard directly in your browser.</p>
-		<p>
-			There is no need for an account! All your files and settings are stored locally on your
-			device.
-		</p>
-		<p>Just click the "Edit" button at the top and start creating your own soundboard.</p>
-	</div>
+		<div class="box info" in:scale={{ start: 0.8, delay: 750 }}>
+			<p>{$t("start.summary.line1")}</p>
+			<p>
+				{$t("start.summary.line2")}
+			</p>
+			<p>
+				{$t("start.summary.line3")}
+			</p>
+		</div>
 
-	<div in:scale={{ start: 0.8, delay: 650 }}>
-		<Sound
-			blob="src/assets/sound.mp3"
-			id="demo"
-			title="Intro Sound"
-			waveform="/assets/soundwaves.png"
-		/>
+		<div in:scale={{ start: 0.8, delay: 650 }}>
+			<Sound
+				blob="src/assets/sound.mp3"
+				id="demo"
+				title={$t("start.sound.title")}
+				waveform="/assets/soundwaves.png"
+			/>
+		</div>
 	</div>
 </section>
 
 <style lang="scss">
 	@use "src/mixins";
 
+	section {
+		display: grid;
+		justify-content: center;
+	}
+
 	.grid {
+		max-width: 80rem;
 		display: grid;
 		padding: 0.5rem;
 		grid-template-columns: repeat(3, 1fr);

@@ -1,5 +1,5 @@
 import { liveQuery } from "dexie";
-import { locale } from "svelte-i18n";
+import { getLocaleFromNavigator, locale } from "svelte-i18n";
 import { writable } from "svelte/store";
 import { db } from "./db";
 
@@ -12,7 +12,7 @@ export const state = liveQuery(async () => {
 
 	if (!app) {
 		db.app.add({
-			language: "en",
+			language: getLocaleFromNavigator(),
 			version: VERSION,
 		});
 		return;
