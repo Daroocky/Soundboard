@@ -44,7 +44,7 @@
 			margin: 0;
 			padding: 0;
 			gap: 1rem;
-			overflow: scroll;
+			overflow: auto;
 			padding: 0 1rem;
 		}
 
